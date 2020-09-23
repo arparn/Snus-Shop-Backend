@@ -14,6 +14,7 @@ public class Item {
     private String url;
     private Long price;
     private String description;
+    private Long rating;
 
     public Item() {
     }
@@ -22,12 +23,13 @@ public class Item {
         this.name = name;
     }
 
-    public Item(Long id, String name, String url, Long price, String description) {
+    public Item(Long id, String name, String url, Long price, String description, Long rating) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.url = url;
+        this.rating = rating;
     }
 
     public Long getId() {
@@ -72,6 +74,15 @@ public class Item {
 
     public Item setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Long getRating() {
+        return rating;
+    }
+
+    public Item setRating(Long rating) {
+        this.rating = rating;
         return this;
     }
 }
