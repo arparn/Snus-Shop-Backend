@@ -12,9 +12,10 @@ public class Item {
     private Long id;
     private String name;
     private String url;
-    private Long price;
+    private Double price;
     private String description;
-    private Long rating;
+    private Double rating;
+    private Integer strength;
 
     public Item() {
     }
@@ -23,13 +24,14 @@ public class Item {
         this.name = name;
     }
 
-    public Item(Long id, String name, String url, Long price, String description, Long rating) {
+    public Item(Long id, String name, String url, Double price, String description, Double rating, Integer strength) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.url = url;
         this.rating = rating;
+        this.strength = strength;
     }
 
     public Long getId() {
@@ -59,11 +61,11 @@ public class Item {
         return this;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public Item setPrice(Long price) {
+    public Item setPrice(Double price) {
         this.price = price;
         return this;
     }
@@ -77,11 +79,11 @@ public class Item {
         return this;
     }
 
-    public Long getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public Item setRating(Long rating) {
+    public Item setRating(Double rating) {
         this.rating = rating;
         return this;
     }
