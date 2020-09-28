@@ -18,12 +18,10 @@ public class ItemController {
     private ItemsService itemsService;
 
 
-
-    @GetMapping("")
+    @GetMapping()
     public List<Item> getItems(@RequestParam(value = "name", required = false) String name){
         return itemsService.getAll(name);
     }
-
     //todo searching
     @GetMapping("{id}")
     public String getItem() {
