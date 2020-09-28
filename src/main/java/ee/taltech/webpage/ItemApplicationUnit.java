@@ -25,4 +25,5 @@ public class ItemApplicationUnit implements CommandLineRunner {
         );
         itemsRepository.saveAll(items);
     }
+
 }

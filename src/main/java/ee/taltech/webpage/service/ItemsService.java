@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemsService {
@@ -13,13 +14,14 @@ public class ItemsService {
     @Autowired
     private ItemsRepository itemsRepository;
 
-    public List<Item> getAll(String name){
+    public List<Item> getAll(){
         return itemsRepository.findAll();
     }
 
-    //todo searching
-    public List<Item> getByName(Long name) {
-        return null;
+    public List<Item> getByName(String name) {
+        List<Item> all = itemsRepository.findAll();
+        return  all.stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
+
 
 }

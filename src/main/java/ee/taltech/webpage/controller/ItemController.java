@@ -3,10 +3,7 @@ package ee.taltech.webpage.controller;
 import ee.taltech.webpage.items.Item;
 import ee.taltech.webpage.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,12 +17,13 @@ public class ItemController {
 
     @GetMapping()
     public List<Item> getItems(@RequestParam(value = "name", required = false) String name){
-        return itemsService.getAll(name);
+        return itemsService.getAll();
     }
     //todo searching
-    @GetMapping("{id}")
-    public String getItem() {
-        return null;
+    @GetMapping("{name}")
+    public List<Item> getItemByName(@RequestParam String name) {
+        return itemsService.getByName(name);
     }
+
 
 }

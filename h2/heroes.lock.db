@@ -1,6 +1,6 @@
 #FileLock
-#Mon Sep 28 10:38:13 EEST 2020
-server=192.168.49.29\:53670
-hostName=DESKTOP-IKBV7KI
+#Mon Sep 28 18:38:50 MSK 2020
+server=192.168.0.15\:50984
+hostName=192.168.0.15
 method=file
-id=174d3a5c88dc6c9b256219817ded25bd22091f142d2
+id=174d55dccaeb984d9f60dda186938bc84e12281215d
