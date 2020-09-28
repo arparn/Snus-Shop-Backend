@@ -10,17 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("")
+@RequestMapping("items")
 @RestController
 public class ItemController {
 
     @Autowired
     private ItemsService itemsService;
 
-    @GetMapping()
+
+
+    @GetMapping("")
     public List<Item> getItems(@RequestParam(value = "name", required = false) String name){
         return itemsService.getAll(name);
     }
+
     //todo searching
     @GetMapping("{id}")
     public String getItem() {
