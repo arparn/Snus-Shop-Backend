@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("ee.taltech"))
+                .apis(RequestHandlerSelectors.basePackage("ee.taltech.webpage"))
                 .paths(PathSelectors.any())
                 .build();
     }
