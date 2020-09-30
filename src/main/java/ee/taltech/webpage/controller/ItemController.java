@@ -54,4 +54,14 @@ public class ItemController {
     public List<Item> getItemByPriceMin() {
         return itemsService.getByPriceMin();
     }
+
+    @GetMapping("{alphabetOrderAtoZ}")
+    public List<Item> getItemByAlphabetAtoZ() {
+        return itemsService.getItemByAlphabetAtoZ();
+    }
+
+    @GetMapping("{alphabetOrderZtoA}")
+    public List<Item> getItemByAlphabetZtoA() {
+        return itemsService.getItemByAlphabetZtoA();
+    }
 }
