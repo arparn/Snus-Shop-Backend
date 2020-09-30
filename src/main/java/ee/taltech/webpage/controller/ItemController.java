@@ -16,7 +16,7 @@ public class ItemController {
 
 
     @GetMapping()
-    public List<Item> getItems(@RequestParam(value = "name", required = false) String name){
+    public List<Item> getItems() {
         return itemsService.getAll();
     }
 
@@ -25,18 +25,33 @@ public class ItemController {
         return itemsService.getByName(name);
     }
 
-    @GetMapping("{rating}")
-    public List<Item> getItemByRating() {
-        return itemsService.getByRating();
+    @GetMapping("{ratingMax}")
+    public List<Item> getItemByRatingMostPopular() {
+        return itemsService.getByRatingMostPopular();
     }
 
-    @GetMapping("{strength}")
-    public List<Item> getItemByStrength() {
-        return itemsService.getByStrength();
+    @GetMapping("{ratingMin}")
+    public List<Item> getItemByRatingLessPopular() {
+        return itemsService.getByRatingLessPopular();
     }
 
-    @GetMapping("{price}")
-    public List<Item> getItemByPrice() {
-        return itemsService.getByPrice();
+    @GetMapping("{strengthMax}")
+    public List<Item> getItemByStrengthMax() {
+        return itemsService.getByStrengthMax();
+    }
+
+    @GetMapping("{strengthMin}")
+    public List<Item> getItemByStrengthMin() {
+        return itemsService.getByStrengthMin();
+    }
+
+    @GetMapping("{priceMax}")
+    public List<Item> getItemByPriceMax() {
+        return itemsService.getByPriceMax();
+    }
+
+    @GetMapping("{priceMin}")
+    public List<Item> getItemByPriceMin() {
+        return itemsService.getByPriceMin();
     }
 }

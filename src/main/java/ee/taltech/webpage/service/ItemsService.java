@@ -24,18 +24,33 @@ public class ItemsService {
         return  all.stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
 
-    public List<Item> getByRating() {
+    public List<Item> getByRatingMostPopular() {
+        List<Item> all = itemsRepository.findAll();
+        return all.stream().sorted(Comparator.comparing(Item::getRating).reversed()).collect(Collectors.toList());
+    }
+
+    public List<Item> getByRatingLessPopular() {
         List<Item> all = itemsRepository.findAll();
         return all.stream().sorted(Comparator.comparing(Item::getRating)).collect(Collectors.toList());
     }
 
-    public List<Item> getByStrength() {
+    public List<Item> getByStrengthMin() {
         List<Item> all = itemsRepository.findAll();
         return all.stream().sorted(Comparator.comparing(Item::getStrength)).collect(Collectors.toList());
     }
 
-    public List<Item> getByPrice() {
+    public List<Item> getByStrengthMax() {
+        List<Item> all = itemsRepository.findAll();
+        return all.stream().sorted(Comparator.comparing(Item::getStrength).reversed()).collect(Collectors.toList());
+    }
+
+    public List<Item> getByPriceMin() {
         List<Item> all = itemsRepository.findAll();
         return all.stream().sorted(Comparator.comparing(Item::getPrice)).collect(Collectors.toList());
+    }
+
+    public List<Item> getByPriceMax() {
+        List<Item> all = itemsRepository.findAll();
+        return all.stream().sorted(Comparator.comparing(Item::getPrice).reversed()).collect(Collectors.toList());
     }
 }
