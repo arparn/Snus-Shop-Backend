@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("items")
 @RestController
@@ -20,9 +21,19 @@ public class ItemController {
         return itemsService.getAll();
     }
 
-    @GetMapping("{name}")
-    public List<Item> getItemByName(@RequestParam String name) {
-        return itemsService.getByName(name);
+    @GetMapping("{nameOne}")
+    public Item getItemByNameOne(@RequestParam String name) {
+        return itemsService.getByNameOne(name);
+    }
+
+    @GetMapping("{nameAll}")
+    public List<Item> getItemByNameAll(@RequestParam String name) {
+        return itemsService.getByNameAll(name);
+    }
+
+    @GetMapping("{id}")
+    public Item getItemById(@RequestParam Long id) {
+        return itemsService.getItemById(id);
     }
 
     @GetMapping("{ratingMax}")

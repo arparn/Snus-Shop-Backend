@@ -23,6 +23,7 @@ public class ItemApplicationUnit implements CommandLineRunner {
                 new Item((long) 4, "KNOX", "/images/knox.png", 6.00, "Good Snus", 4.6, 3),
                 new Item((long) 5, "Skruf", "/images/skruf.png", 4.99, "Good Snus", 3.7, 4)
         );
+
         itemsRepository.saveAll(items);
     }
 
