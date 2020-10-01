@@ -1,10 +1,9 @@
 package ee.taltech.webpage.items;
 
-//import ee.taltech.webpage.comments.Comment;
+import ee.taltech.webpage.comments.Comment;
 import lombok.*;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,16 +31,16 @@ public class Item {
     @Column(name="strength")
     private Integer strength;
 
-//    @OneToMany(mappedBy = "item")
-//    private List<Comment> comments = new LinkedList<>();
-//
-//    public Item(Long id, String name, String url, Double price, String description, Double rating, Integer strength) {
-//        this.id = id;
-//        this.name = name;
-//        this.url = url;
-//        this.price = price;
-//        this.description = description;
-//        this.rating = rating;
-//        this.strength = strength;
-//    }
+    @OneToMany(mappedBy = "item")
+    private List<Comment> comments = new LinkedList<>();
+
+    public Item(Long id, String name, String url, Double price, String description, Double rating, Integer strength) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.price = price;
+        this.description = description;
+        this.rating = rating;
+        this.strength = strength;
+    }
 }
