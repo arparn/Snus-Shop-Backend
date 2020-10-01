@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,23 +20,47 @@ public class ItemsService {
         return itemsRepository.findAll();
     }
 
-    public List<Item> getByName(String name) {
-        List<Item> all = itemsRepository.findAll();
-        return  all.stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
+    public Item getItemById(Long id) {
+        return  itemsRepository.findAll().stream().filter(x->x.getId() == id).findFirst().get();
     }
 
-    public List<Item> getByRating() {
-        List<Item> all = itemsRepository.findAll();
-        return all.stream().sorted(Comparator.comparing(Item::getRating)).collect(Collectors.toList());
+    public List<Item> getByNameAll(String name) {
+        return  itemsRepository.findAll().stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
 
-    public List<Item> getByStrength() {
-        List<Item> all = itemsRepository.findAll();
-        return all.stream().sorted(Comparator.comparing(Item::getStrength)).collect(Collectors.toList());
+    public Item getByNameOne(String name) {
+        return  itemsRepository.findAll().stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).findFirst().get();
     }
 
-    public List<Item> getByPrice() {
-        List<Item> all = itemsRepository.findAll();
-        return all.stream().sorted(Comparator.comparing(Item::getPrice)).collect(Collectors.toList());
+    public List<Item> getByRatingMostPopular() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getRating).reversed()).collect(Collectors.toList());
+    }
+
+    public List<Item> getByRatingLessPopular() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getRating)).collect(Collectors.toList());
+    }
+
+    public List<Item> getByStrengthMin() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getStrength)).collect(Collectors.toList());
+    }
+
+    public List<Item> getByStrengthMax() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getStrength).reversed()).collect(Collectors.toList());
+    }
+
+    public List<Item> getByPriceMin() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getPrice)).collect(Collectors.toList());
+    }
+
+    public List<Item> getByPriceMax() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getPrice).reversed()).collect(Collectors.toList());
+    }
+
+    public List<Item> getItemByAlphabetAtoZ() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName)).collect(Collectors.toList());
+    }
+
+    public List<Item> getItemByAlphabetZtoA() {
+        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName).reversed()).collect(Collectors.toList());
     }
 }
