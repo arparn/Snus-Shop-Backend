@@ -1,5 +1,6 @@
 package ee.taltech.webpage.service;
 
+import ee.taltech.webpage.exeption.ItemNotFoundException;
 import ee.taltech.webpage.items.Item;
 import ee.taltech.webpage.repository.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,12 +16,12 @@ public class ItemsService {
     @Autowired
     private ItemsRepository itemsRepository;
 
-    public List<Item> getAll(){
+    public List<Item> getAll(String name){
         return itemsRepository.findAll();
     }
 
     public Item getItemById(Long id) {
-        return  itemsRepository.findAll().stream().filter(x->x.getId() == id).findFirst().get();
+        return  itemsRepository.findById(id).orElseThrow(ItemNotFoundException::new);
     }
 
     public List<Item> getByNameAll(String name) {
