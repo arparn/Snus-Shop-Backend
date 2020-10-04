@@ -1,6 +1,6 @@
-package ee.taltech.webpage.comments;
+package ee.taltech.webpage.model;
 
-import ee.taltech.webpage.items.Item;
+import ee.taltech.webpage.model.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,22 +10,23 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "comment")
 public class Comment {
     @Id
-    @Column (name = "commentCreatorName")
-    private String commentCreatorName;
-    @Column (name = "comment")
+    @GeneratedValue
+    private Long id;
+    private String firstName;
+    private String lastName;
     private String comment;
-    @Column (name = "time")
     private LocalDateTime time;
     @ManyToOne
     @JoinColumn(name = "item_comment")
     private Item item;
 
 
-    public Comment(String commentCreatorName, String comment, Item item) {
-        this.commentCreatorName = commentCreatorName;
+    public Comment(String firstName, String lastName, String comment, Item item, Long id) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.comment = comment;
         this.item = item;
         time = LocalDateTime.now();

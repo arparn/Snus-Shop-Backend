@@ -1,9 +1,9 @@
 package ee.taltech.webpage.repository;
 
-import ee.taltech.webpage.model.Item;
+import ee.taltech.webpage.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ItemsRepository extends JpaRepository<Item, Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 }

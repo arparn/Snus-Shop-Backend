@@ -1,6 +1,5 @@
-package ee.taltech.webpage.items;
+package ee.taltech.webpage.model;
 
-import ee.taltech.webpage.comments.Comment;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,25 +11,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "item")
 public class Item {
 
     @Id
-    @Column(name="id")
+    @GeneratedValue
     private Long id;
-    @Column(name="name")
     private String name;
-    @Column(name="url")
     private String url;
-    @Column(name="price")
     private Double price;
-    @Column(name="description")
     private String description;
-    @Column(name="rating")
     private Double rating;
-    @Column(name="strength")
     private Integer strength;
-
     @OneToMany(mappedBy = "item")
     private List<Comment> comments = new LinkedList<>();
 
@@ -43,4 +34,10 @@ public class Item {
         this.rating = rating;
         this.strength = strength;
     }
+
+    public String addComment(Comment comment) {
+        comments.add(comment);
+        return id + " " + comments + name;
+    }
+
 }

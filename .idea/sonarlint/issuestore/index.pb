@@ -7,8 +7,6 @@ j
 :src/main/java/ee/taltech/webpage/service/ItemsService.java,3\5\35eb077dd60fb3f825b1296d4673497e1d6455a3
 p
 @src/main/java/ee/taltech/webpage/repository/ItemsRepository.java,b\1\b1dcfdf3050f9041bd4c4d19c2ab5b4bd127b071
-`
-0src/main/java/ee/taltech/webpage/items/Item.java,8\5\85e6b61850230d42f5eb622d7ef66a2fa76794e9
 i
 9src/main/java/ee/taltech/webpage/ItemApplicationUnit.java,a\3\a3d2373a678f0815d7d3fa03eac16cc801d6e10c
 <
@@ -24,3 +22,17 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 ?
 logs/spring.log,7\6\76a20666cd8f97e7a29654b5cc02219795841972
+t
+Dsrc/main/java/ee/taltech/webpage/exeption/ItemNotFoundException.java,4\8\48f142081dea3ebeb70241280387c9186d5e3063
+o
+?src/main/java/ee/taltech/webpage/controller/UserController.java,5\2\52be69ee00b33ed42203aa89be35d48908a02680
+c
+3src/main/java/ee/taltech/webpage/model/Comment.java,2\c\2cbd11c11375ca037c25b51f3962b205994d5f97
+`
+0src/main/java/ee/taltech/webpage/model/Item.java,5\6\56b1ff38c1648196a699f94d015ea3987c431e95
+i
+9src/main/java/ee/taltech/webpage/service/UserService.java,1\c\1c292b33bf4498bef00a535b67896d5a43c1aad0
+o
+?src/main/java/ee/taltech/webpage/repository/UserRepository.java,7\f\7f30fc8ed292fd21e879b9d0d4cd55e50245ebab
+`
+0src/main/java/ee/taltech/webpage/model/User.java,1\c\1cbbc3a13421f80d4ff6f0e11c49437f5fd0a6ff
