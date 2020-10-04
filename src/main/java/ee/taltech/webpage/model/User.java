@@ -22,27 +22,19 @@ public class User {
     @ManyToMany
     private List<Item> shoppingCart = new ArrayList<>();
 
-    public List<Item> getWishlist(){
-        return wishlist;
+    public void addItemToWishlist(Item item){
+        if (!wishlist.contains(item)){
+            wishlist.add(item);
+        }
     }
 
-//    public void addItemToWishList(Item item){
-//        if (!items.contains(item)){
-//            items.add(item);
-//        }
-//    }
-//
-//    public void removeItemFromWishList(Item item){
-//        if (items.contains(item)){
-//            items.remove(item);
-//        }
-//    }
-//
-//    public void clearWishList(){
-//        items.clear();
-//    }
-//
-//    public List<Item> getWishList(){
-//        return items;
-//    }
+    public void removeItemFromWishlist(Item item){
+        if (wishlist.contains(item)){
+            wishlist.remove(item);
+        }
+    }
+
+    public void clearWishList(){
+        wishlist.clear();
+    }
 }
