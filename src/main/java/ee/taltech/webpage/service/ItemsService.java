@@ -1,7 +1,8 @@
 package ee.taltech.webpage.service;
 
+import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.exeption.ItemNotFoundException;
-import ee.taltech.webpage.items.Item;
+import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.repository.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,5 +63,13 @@ public class ItemsService {
 
     public List<Item> getItemByAlphabetZtoA() {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName).reversed()).collect(Collectors.toList());
+    }
+
+    public String addComment(String firstName, String lastName, String comment, Long itemLong){
+        return getItemById(itemLong).addComment(new Comment(firstName, lastName, comment, itemsRepository.findAll().get(itemLong.intValue())));
+    }
+
+    public List<Comment> getComments(Long itemLong){
+        return getItemById(itemLong).getComments();
     }
 }

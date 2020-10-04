@@ -1,7 +1,9 @@
 package ee.taltech.webpage;
 
-import ee.taltech.webpage.items.Item;
+import ee.taltech.webpage.model.Item;
+import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.repository.ItemsRepository;
+import ee.taltech.webpage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,6 +15,8 @@ public class ItemApplicationUnit implements CommandLineRunner {
 
     @Autowired
     private ItemsRepository itemsRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -23,7 +27,8 @@ public class ItemApplicationUnit implements CommandLineRunner {
                 new Item( (long) 4, "KNOX", "/assets/images/knox.png", 6.00, "Snus", 4.6, 3),
                 new Item( (long) 5, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4)
         );
-
+        User user = new User();
+        userRepository.save(user);
         itemsRepository.saveAll(items);
     }
 
