@@ -3,6 +3,7 @@ package ee.taltech.webpage.service;
 import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.exeption.ItemNotFoundException;
 import ee.taltech.webpage.model.Item;
+import ee.taltech.webpage.repository.CommentRepository;
 import ee.taltech.webpage.repository.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,16 @@ public class ItemsService {
     @Autowired
     private ItemsRepository itemsRepository;
 
-    public List<Item> getAll(String name){
+    @Autowired
+    private CommentRepository commentRepository;
+    private int commentQuantity = 0;
+
+    public List<Item> getAll(){
         return itemsRepository.findAll();
     }
 
     public Item getItemById(Long id) {
-        return  itemsRepository.findById(id).orElseThrow(ItemNotFoundException::new);
+        return  itemsRepository.findById(id).get();
     }
 
     public List<Item> getByNameAll(String name) {
@@ -37,20 +42,8 @@ public class ItemsService {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getRating).reversed()).collect(Collectors.toList());
     }
 
-    public List<Item> getByRatingLessPopular() {
-        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getRating)).collect(Collectors.toList());
-    }
-
-    public List<Item> getByStrengthMin() {
-        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getStrength)).collect(Collectors.toList());
-    }
-
     public List<Item> getByStrengthMax() {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getStrength).reversed()).collect(Collectors.toList());
-    }
-
-    public List<Item> getByPriceMin() {
-        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getPrice)).collect(Collectors.toList());
     }
 
     public List<Item> getByPriceMax() {
@@ -61,13 +54,11 @@ public class ItemsService {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName)).collect(Collectors.toList());
     }
 
-    public List<Item> getItemByAlphabetZtoA() {
-        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName).reversed()).collect(Collectors.toList());
-    }
-
-    public String addComment(String firstName, String lastName, String comment, Long itemLong){
-        return getItemById(itemLong).addComment(new Comment(firstName, lastName, comment, itemsRepository.findAll().get(itemLong.intValue())));
-    }
+//    public String addComment(String firstName, String lastName, String comment, Long itemLong){
+//        commentRepository.save(new Comment(firstName, lastName, comment, itemsRepository.findAll().get(itemLong.intValue()), (long) commentQuantity));
+//        commentQuantity++;
+//        return getItemById(itemLong).addComment(commentRepository.findAll().stream().filter(c -> c.getId() == commentQuantity -1).findFirst().get());
+//    }
 
     public List<Comment> getComments(Long itemLong){
         return getItemById(itemLong).getComments();

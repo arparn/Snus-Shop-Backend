@@ -23,7 +23,8 @@ public class Comment {
     private Item item;
 
 
-    public Comment(String firstName, String lastName, String comment, Item item) {
+    public Comment(String firstName, String lastName, String comment, Item item, Long id) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.comment = comment;
