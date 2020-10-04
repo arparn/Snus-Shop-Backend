@@ -29,12 +29,24 @@ public class User {
     }
 
     public void removeItemFromWishlist(Item item){
-        if (wishlist.contains(item)){
-            wishlist.remove(item);
+        wishlist.remove(item);
+    }
+
+    public void clearWishlist(){
+        wishlist.clear();
+    }
+
+    public void addItemToShoppingCart(Item item){
+        if (!shoppingCart.contains(item)){
+            shoppingCart.add(item);
         }
     }
 
-    public void clearWishList(){
-        wishlist.clear();
+    public void removeItemFromShoppingCart(Item item){
+        shoppingCart.remove(item);
+    }
+
+    public void clearShoppingCart(){
+        shoppingCart.clear();
     }
 }

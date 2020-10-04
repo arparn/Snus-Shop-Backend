@@ -27,7 +27,23 @@ public class UserService {
         userRepository.findAll().stream().findFirst().get().removeItemFromWishlist(itemsService.getItemById(itemId));
     }
 
-    public void clearWishList(){
-        userRepository.findAll().stream().findFirst().get().clearWishList();
+    public void clearWishlist(){
+        userRepository.findAll().stream().findFirst().get().clearWishlist();
+    }
+
+    public List<Item> getShoppingCart(){
+        return userRepository.findAll().stream().findFirst().get().getShoppingCart();
+    }
+
+    public void addItemToShoppingCart(Long itemId){
+        userRepository.findAll().stream().findFirst().get().addItemToShoppingCart(itemsService.getItemById(itemId));
+    }
+
+    public void removeItemFromShoppingCart(Long itemId){
+        userRepository.findAll().stream().findFirst().get().removeItemFromShoppingCart(itemsService.getItemById(itemId));
+    }
+
+    public void clearShoppingCart(){
+        userRepository.findAll().stream().findFirst().get().clearShoppingCart();
     }
 }

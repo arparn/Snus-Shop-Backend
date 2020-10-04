@@ -31,7 +31,27 @@ public class UserController {
     }
 
     @PostMapping("clearWishlist")
-    public void clearWishList(){
-        userRepository.clearWishList();
+    public void clearWishlist(){
+        userRepository.clearWishlist();
+    }
+
+    @GetMapping("getShoppingCart")
+    public List<Item> getShoppingCart() {
+        return userRepository.getShoppingCart();
+    }
+
+    @PostMapping("addShoppingCart")
+    public void addShoppingCart(@RequestParam( value = "item ID") Long itemId){
+        userRepository.addItemToShoppingCart(itemId);
+    }
+
+    @PostMapping("removeItemFromShoppingCart")
+    public void removeItemFromShoppingCart(@RequestParam( value = "item ID") Long itemId){
+        userRepository.removeItemFromShoppingCart(itemId);
+    }
+
+    @PostMapping("clearShoppingCart")
+    public void clearShoppingCart(){
+        userRepository.clearShoppingCart();
     }
 }
