@@ -18,10 +18,6 @@ public class ItemsService {
     @Autowired
     private ItemsRepository itemsRepository;
 
-    @Autowired
-    private CommentRepository commentRepository;
-    private int commentQuantity = 0;
-
     public List<Item> getAll(){
         return itemsRepository.findAll();
     }
@@ -54,13 +50,16 @@ public class ItemsService {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName)).collect(Collectors.toList());
     }
 
-//    public String addComment(String firstName, String lastName, String comment, Long itemLong){
-//        commentRepository.save(new Comment(firstName, lastName, comment, itemsRepository.findAll().get(itemLong.intValue()), (long) commentQuantity));
-//        commentQuantity++;
-//        return getItemById(itemLong).addComment(commentRepository.findAll().stream().filter(c -> c.getId() == commentQuantity -1).findFirst().get());
-//    }
-
     public List<Comment> getComments(Long itemLong){
         return getItemById(itemLong).getComments();
+    }
+
+    public void saveAll(List<Item> itemList){
+        itemsRepository.saveAll(itemList);
+    }
+
+    // update
+    public void update(Item item){
+        itemsRepository.save(item);
     }
 }

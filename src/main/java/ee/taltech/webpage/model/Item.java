@@ -22,7 +22,7 @@ public class Item {
     private String description;
     private Double rating;
     private Integer strength;
-    @OneToMany(mappedBy = "item")
+    @OneToMany
     private List<Comment> comments = new LinkedList<>();
 
     public Item(Long id, String name, String url, Double price, String description, Double rating, Integer strength) {
@@ -35,9 +35,8 @@ public class Item {
         this.strength = strength;
     }
 
-    public String addComment(Comment comment) {
+    public void addComment(Comment comment) {
         comments.add(comment);
-        return id + " " + comments + name;
     }
 
 }
