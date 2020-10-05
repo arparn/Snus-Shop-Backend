@@ -1,5 +1,10 @@
 
-H
-java:S1172"+Remove this unused method parameter "name".(Ë·è8ê«ïÎ.
+p
+java:S1128"NRemove this unused import 'ee.taltech.webpage.exeption.ItemNotFoundException'.(É³Ã¿ùÿÿÿÿ8œäˆ¢Ï.
 T
-java:S3655!"7Call "Optional#isPresent()" before accessing the value.(™“ö°8è›­Î.
+java:S3655"7Call "Optional#isPresent()" before accessing the value.(«‚ö‘8œäˆ¢Ï.
+T
+java:S3655&"7Call "Optional#isPresent()" before accessing the value.(™“ö°8è›­Î.
+U
+java:S1068"3Remove this unused "commentQuantity" private field.(éù±ºûÿÿÿÿ8œäˆ¢Ï.
+X	java:S1259"<This block of commented-out lines of code should be removed.(…×ñ¡8œäˆ¢Ï.
