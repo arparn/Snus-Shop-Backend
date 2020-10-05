@@ -26,12 +26,7 @@ public class UserController {
 
     @PostMapping("addWishlist")
     public void addWishlist(@RequestParam( value = "item ID") Long itemId){
-        userRepository.addItemToWishlist(itemsService.getItemById(itemId));
-    }
-
-    @PostMapping("removeItemFromWishlist")
-    public void removeItemFromWishlist(@RequestParam( value = "item ID") Long itemId){
-        userRepository.removeItemFromWishlist(itemsService.getItemById(itemId));
+        userRepository.addAndRemoveWishlist(itemsService.getItemById(itemId));
     }
 
     @PostMapping("clearWishlist")

@@ -1,5 +1,7 @@
 package ee.taltech.webpage.model;
 
+import ee.taltech.webpage.repository.ItemsRepository;
+import ee.taltech.webpage.repository.UserRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,11 +10,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 public class User {
+
 
     @Id
     @GeneratedValue
@@ -22,12 +26,12 @@ public class User {
     @ManyToMany
     private List<Item> shoppingCart = new ArrayList<>();
 
-    public void addItemToWishlist(Item item){
-        wishlist.add(item);
-    }
-
-    public void removeItemFromWishlist(Item item){
-        wishlist.remove(item);
+    public void addAndRemoveWishlist(Item item){
+        if (!wishlist.contains(item)) {
+            wishlist.add(item);
+        }  else {
+            wishlist.remove(item);
+        }
     }
 
     public void clearWishlist(){

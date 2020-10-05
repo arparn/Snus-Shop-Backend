@@ -2,6 +2,7 @@ package ee.taltech.webpage.service;
 
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.User;
+import ee.taltech.webpage.repository.ItemsRepository;
 import ee.taltech.webpage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,22 +15,21 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
+    @Autowired
+    private ItemsRepository itemsRepository;
 
     public List<Item> getWishlist(){
         return userRepository.findAll().stream().findFirst().get().getWishlist();
     }
 
-    public void addItemToWishlist(Item item){
-        userRepository.findAll().stream().findFirst().get().addItemToWishlist(item);
-    }
-
-    public void removeItemFromWishlist(Item item){
-        userRepository.findAll().stream().findFirst().get().removeItemFromWishlist(item);
+    public void addAndRemoveWishlist(Item item){
+        userRepository.findAll().stream().findFirst().get().addAndRemoveWishlist(item);
+        userRepository.save(userRepository.findAll().stream().findFirst().get());
     }
 
     public void clearWishlist(){
         userRepository.findAll().stream().findFirst().get().clearWishlist();
+        userRepository.save(userRepository.findAll().stream().findFirst().get());
     }
 
     public List<Item> getShoppingCart(){
