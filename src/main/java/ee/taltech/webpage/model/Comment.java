@@ -1,7 +1,9 @@
 package ee.taltech.webpage.model;
 
 import ee.taltech.webpage.model.Item;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class Comment {
     @Id
@@ -18,17 +21,12 @@ public class Comment {
     private String lastName;
     private String comment;
     private LocalDateTime time;
-    @ManyToOne
-    @JoinColumn(name = "item_comment")
-    private Item item;
 
-
-    public Comment(String firstName, String lastName, String comment, Item item, Long id) {
+    public Comment(String firstName, String lastName, String comment, Long id) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.comment = comment;
-        this.item = item;
         time = LocalDateTime.now();
     }
 }

@@ -36,3 +36,5 @@ o
 ?src/main/java/ee/taltech/webpage/repository/UserRepository.java,7\f\7f30fc8ed292fd21e879b9d0d4cd55e50245ebab
 `
 0src/main/java/ee/taltech/webpage/model/User.java,1\c\1cbbc3a13421f80d4ff6f0e11c49437f5fd0a6ff
+r
+Bsrc/main/java/ee/taltech/webpage/repository/CommentRepository.java,f\e\febb2c9dad81f396c0e4327899d4699c19b8297a
