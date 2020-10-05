@@ -62,34 +62,34 @@ public class ItemController {
         return itemsService.getAll();
     }
 
-    @GetMapping
-    public List<Item> getItemByRatingMostPopular(@RequestParam(required = false) String ratingMax) {
-        return itemsService.getByRatingMostPopular();
-    }
-
-    @GetMapping
-    public List<Item> getItemByStrengthMax(@RequestParam(required = false) String strengthMax) {
-        return itemsService.getByStrengthMax();
-    }
-
-    @GetMapping
-    public List<Item> getItemByStrengthMin(@RequestParam(required = false) String strengthMin) {
-        List<Item> items = itemsService.getByStrengthMax();
-        Collections.reverse(itemsService.getByStrengthMax());
-        return items;
-    }
-
     @GetMapping("{id}")
     public Item getItemById(@PathVariable Long id) {
         return itemsService.getItemById(id);
     }
 
-    @GetMapping
-    public List<Item> getItemByPriceMax(@RequestParam(required = false) String priceMax) {
+    @GetMapping("ratingMax")
+    public List<Item> getItemByRatingMostPopular() {
+        return itemsService.getByRatingMostPopular();
+    }
+
+    @GetMapping("strengthMax")
+    public List<Item> getItemByStrengthMax() {
+        return itemsService.getByStrengthMax();
+    }
+
+    @GetMapping("strengthMin")
+    public List<Item> getItemByStrengthMin() {
+        List<Item> items = itemsService.getByStrengthMax();
+        Collections.reverse(itemsService.getByStrengthMax());
+        return items;
+    }
+
+    @GetMapping("priceMax")
+    public List<Item> getItemByPriceMax() {
         return itemsService.getByPriceMax();}
 
-    @GetMapping
-    public List<Item> getItemByPriceMin(@RequestParam(required = false) String priceMin) {
+    @GetMapping("priceMin")
+    public List<Item> getItemByPriceMin() {
         List<Item> items = itemsService.getByPriceMax();
         Collections.reverse(items);
         return items;
