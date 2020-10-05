@@ -1,5 +1,6 @@
 package ee.taltech.webpage;
 
+import ee.taltech.webpage.controller.ItemController;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.repository.CommentRepository;
@@ -19,21 +20,28 @@ public class ItemApplicationUnit implements CommandLineRunner {
 
     @Autowired
     private ItemsRepository itemsRepository;
+
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private CommentRepository commentRepository;
 
     @Autowired
     private ItemsService itemsService;
+
+    @Autowired
+    private ItemController itemController;
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private CommentService commentService;
 
     @Override
     public void run(String... args) throws Exception {
-
+        itemController.start();
     }
 
 }
