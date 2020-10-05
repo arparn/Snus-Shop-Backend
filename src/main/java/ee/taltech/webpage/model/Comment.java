@@ -1,7 +1,5 @@
 package ee.taltech.webpage.model;
 
-import ee.taltech.webpage.model.Item;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,7 +1,9 @@
 package ee.taltech.webpage.service;
 
 import ee.taltech.webpage.model.Item;
+import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
+import ee.taltech.webpage.repository.ItemCountRepository;
 import ee.taltech.webpage.repository.ItemsRepository;
 import ee.taltech.webpage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private ItemsRepository itemsRepository;
+    private ItemCountRepository itemCountRepository;
 
     public List<Item> getWishlist(){
         return userRepository.findAll().stream().findFirst().get().getWishlist();
@@ -32,16 +34,17 @@ public class UserService {
         userRepository.save(userRepository.findAll().stream().findFirst().get());
     }
 
-    public List<Item> getShoppingCart(){
+    public List<ItemCount> getShoppingCart(){
         return userRepository.findAll().stream().findFirst().get().getShoppingCart();
     }
 
     public void addItemToShoppingCart(Item item){
-        userRepository.findAll().stream().findFirst().get().addItemToShoppingCart(item);
+        userRepository.findAll().stream().findFirst().get().addItemToShoppingCart(item, itemCountRepository);
+        userRepository.save(userRepository.findAll().stream().findFirst().get());
     }
 
     public void removeItemFromShoppingCart(Item item){
-        userRepository.findAll().stream().findFirst().get().removeItemFromShoppingCart(item);
+        userRepository.findAll().stream().findFirst().get().removeItemFromShoppingCart(item, itemCountRepository);
     }
 
     public void clearShoppingCart(){

@@ -1,6 +1,7 @@
 package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Item;
+import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.service.ItemsService;
 import ee.taltech.webpage.service.UserService;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("getShoppingCart")
-    public List<Item> getShoppingCart() {
+    public List<ItemCount> getShoppingCart() {
         return userRepository.getShoppingCart();
     }
 
