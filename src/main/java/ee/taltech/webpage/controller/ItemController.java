@@ -82,7 +82,7 @@ public class ItemController {
     @GetMapping("strengthMin")
     public List<Item> getItemByStrengthMin() {
         List<Item> items = itemsService.getByStrengthMax();
-        Collections.reverse(itemsService.getByStrengthMax());
+        Collections.reverse(items);
         return items;
     }
 
