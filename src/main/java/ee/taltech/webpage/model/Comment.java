@@ -1,7 +1,5 @@
 package ee.taltech.webpage.model;
 
-import ee.taltech.webpage.model.Item;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,8 +20,7 @@ public class Comment {
     private String comment;
     private LocalDateTime time;
 
-    public Comment(String firstName, String lastName, String comment, Long id) {
-        this.id = id;
+    public Comment(String firstName, String lastName, String comment) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.comment = comment;

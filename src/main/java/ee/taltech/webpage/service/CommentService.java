@@ -11,18 +11,14 @@ public class CommentService {
 
     @Autowired
     private CommentRepository commentRepository;
-    private int commentQuantity = 0;
 
     @Autowired
     private ItemsService itemsService;
 
     public Comment addComment(String firstName, String lastName, String comment, Item item){
-        Comment newComment = new Comment(firstName, lastName, comment, (long) commentQuantity);
-        commentQuantity++;
+        Comment newComment = new Comment(firstName, lastName, comment);
         commentRepository.save(newComment);
-
-        item.addComment(commentRepository.findAll().stream().findFirst().get());
-
+        item.addComment(commentRepository.findAll().stream().filter(x->x.getId().equals(newComment.getId())).findFirst().get());
         commentRepository.save(item.getComments().get(0));
         itemsService.update(item);
         return newComment;

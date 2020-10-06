@@ -1,5 +1,8 @@
 package ee.taltech.webpage.model;
 
+import ee.taltech.webpage.repository.ItemCountRepository;
+import ee.taltech.webpage.repository.ItemsRepository;
+import ee.taltech.webpage.repository.UserRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,11 +11,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 public class User {
+
 
     @Id
     @GeneratedValue
@@ -20,28 +25,45 @@ public class User {
     @ManyToMany
     private List<Item> wishlist = new ArrayList<>();
     @ManyToMany
-    private List<Item> shoppingCart = new ArrayList<>();
+    private List<ItemCount> shoppingCart = new ArrayList<>();
 
-    public void addItemToWishlist(Item item){
-        wishlist.add(item);
-    }
-
-    public void removeItemFromWishlist(Item item){
-        wishlist.remove(item);
+    public void addAndRemoveWishlist(Item item){
+        if (!wishlist.contains(item)) {
+            wishlist.add(item);
+        }  else {
+            wishlist.remove(item);
+        }
     }
 
     public void clearWishlist(){
         wishlist.clear();
     }
 
-    public void addItemToShoppingCart(Item item){
-        if (!shoppingCart.contains(item)){
-            shoppingCart.add(item);
+    public void addItemToShoppingCart(Item item, ItemCountRepository itemCountRepository){
+        if (shoppingCart.stream().filter(x->x.getItem().equals(item)).findFirst().isEmpty()) {
+            ItemCount itemCount = new ItemCount(item, 1);
+            itemCountRepository.save(itemCount);
+            shoppingCart.add(itemCount);
+        } else {
+            shoppingCart.stream().filter(x->x.getItem().equals(item)).findFirst().get()
+                    .setQuantity(shoppingCart.stream().filter(x->x.getItem().equals(item))
+                            .findFirst().get().getQuantity() + 1);
+            itemCountRepository.save(shoppingCart.stream().filter(x->x.getItem().equals(item)).findFirst().get());
         }
     }
 
-    public void removeItemFromShoppingCart(Item item){
-        shoppingCart.remove(item);
+    public void removeItemFromShoppingCart(Item item, ItemCountRepository itemCountRepository){
+        if (shoppingCart.stream().anyMatch(x->x.getItem().equals(item))
+                && shoppingCart.stream().filter(x->x.getItem().equals(item)).findFirst().get().getQuantity() > 0){
+            ItemCount itemCount = shoppingCart.stream().filter(x->x.getItem().equals(item)).findFirst().get();
+            itemCount.setQuantity(shoppingCart.stream().filter(x->x.getItem().equals(item))
+                            .findFirst().get().getQuantity() - 1);
+            itemCountRepository.save(itemCount);
+            if (itemCount.getQuantity() == 0) {
+                shoppingCart.remove(itemCount);
+                itemCountRepository.delete(itemCount);
+            }
+        }
     }
 
     public void clearShoppingCart(){

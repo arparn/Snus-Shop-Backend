@@ -1,6 +1,7 @@
 package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Item;
+import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.service.ItemsService;
 import ee.taltech.webpage.service.UserService;
@@ -26,12 +27,7 @@ public class UserController {
 
     @PostMapping("addWishlist")
     public void addWishlist(@RequestParam( value = "item ID") Long itemId){
-        userRepository.addItemToWishlist(itemsService.getItemById(itemId));
-    }
-
-    @PostMapping("removeItemFromWishlist")
-    public void removeItemFromWishlist(@RequestParam( value = "item ID") Long itemId){
-        userRepository.removeItemFromWishlist(itemsService.getItemById(itemId));
+        userRepository.addAndRemoveWishlist(itemsService.getItemById(itemId));
     }
 
     @PostMapping("clearWishlist")
@@ -40,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("getShoppingCart")
-    public List<Item> getShoppingCart() {
+    public List<ItemCount> getShoppingCart() {
         return userRepository.getShoppingCart();
     }
 

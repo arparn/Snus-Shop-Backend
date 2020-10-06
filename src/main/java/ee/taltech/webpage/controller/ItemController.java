@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("items")
 @RestController
@@ -119,22 +121,14 @@ public class ItemController {
 //        return items;
 //    }
 //
-//    @PostMapping("{addComment}")
-//    public Comment addComment(@RequestParam(value = "Your first name") String firstName,
-//                           @RequestParam(value = "Your last name") String lastName,
-//                           @RequestParam(value = "Your comment") String comment,
-//                              @RequestParam(value = "Item nr") Long itemLong) {
-//        return commentService.addComment(firstName, lastName, comment, itemsService.getItemById(itemLong));
-//    }
-//
-////    @PostMapping("{addComment}")
-////    public Comment addComment(@RequestBody Comment comment) {
-//////        Comment newComment = new Comment(firstName, lastName, comment, getItemById(itemLong), (long) commentQuantity);
-//////        commentQuantity++;
-//////        List<Comment> list = new LinkedList<>();
-//////        list.add(newComment);
-////        return commentRepository.save(comment);
-////    }
+    @PostMapping("{addComment}")
+    public Comment addComment(@RequestParam(value = "Your first name") String firstName,
+                              @RequestParam(value = "Your last name") String lastName,
+                              @RequestParam(value = "Your comment") String comment,
+                              @RequestParam(value = "Item nr") Long itemLong) {
+        return commentService.addComment(firstName, lastName, comment, itemsService.getItemById(itemLong));
+    }
+
 //
 //    @GetMapping("{getComments}")
 //    public List<Comment> getComments(@RequestParam(value = "Item nr") Long itemLong) {

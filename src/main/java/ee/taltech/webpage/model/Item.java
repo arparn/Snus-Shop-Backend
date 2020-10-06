@@ -22,7 +22,7 @@ public class Item {
     private String description;
     private Double rating;
     private Integer strength;
-    @OneToMany
+    @ManyToMany
     private List<Comment> comments = new LinkedList<>();
 
     public Item(Long id, String name, String url, Double price, String description, Double rating, Integer strength) {
