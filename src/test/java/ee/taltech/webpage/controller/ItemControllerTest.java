@@ -33,41 +33,4 @@ class ItemControllerTest {
         Item item = items.get(0);
         assertEquals("Odens", item.getName());
     }
-
-    @Test
-    void getItems() {
-
-    }
-
-    @Test
-    void getItemById() {
-    }
-
-    @Test
-    void getItemByRatingMostPopular() {
-    }
-
-    @Test
-    void getItemByStrengthMax() {
-    }
-
-    @Test
-    void getItemByStrengthMin() {
-    }
-
-    @Test
-    void getItemByPriceMax() {
-    }
-
-    @Test
-    void getItemByPriceMin() {
-    }
-
-    @Test
-    void addComment() {
-    }
-
-    @Test
-    void getComments() {
-    }
 }
