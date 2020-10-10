@@ -15,12 +15,11 @@ public class CommentService {
     @Autowired
     private ItemsService itemsService;
 
-    public Comment addComment(String firstName, String lastName, String comment, Item item){
-        Comment newComment = new Comment(firstName, lastName, comment);
-        commentRepository.save(newComment);
-        item.addComment(commentRepository.findAll().stream().filter(x->x.getId().equals(newComment.getId())).findFirst().get());
+    public Comment addComment(Comment comment, Item item){
+        commentRepository.save(comment);
+        item.addComment(commentRepository.findAll().stream().filter(x->x.getId().equals(comment.getId())).findFirst().get());
         commentRepository.save(item.getComments().get(0));
         itemsService.update(item);
-        return newComment;
+        return comment;
     }
 }

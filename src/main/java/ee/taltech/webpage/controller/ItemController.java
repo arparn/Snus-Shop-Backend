@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("items")
 @RestController
@@ -62,6 +60,17 @@ public class ItemController {
             return itemsService.getByNameAll(query);
         }
         return itemsService.getAll();
+    }
+
+    @GetMapping("/{id}/comments")
+    public List<Comment> getComments(@PathVariable Long id) {
+        return itemsService.getComments(id);
+    }
+
+    @PostMapping("{id}")
+    public Comment addComment(@RequestBody Comment comment,
+                              @PathVariable Long id) {
+        return commentService.addComment(comment, itemsService.getItemById(id));
     }
 
     @GetMapping("{id}")
@@ -121,17 +130,4 @@ public class ItemController {
 //        return items;
 //    }
 //
-    @PostMapping("{addComment}")
-    public Comment addComment(@RequestParam(value = "Your first name") String firstName,
-                              @RequestParam(value = "Your last name") String lastName,
-                              @RequestParam(value = "Your comment") String comment,
-                              @RequestParam(value = "Item nr") Long itemLong) {
-        return commentService.addComment(firstName, lastName, comment, itemsService.getItemById(itemLong));
-    }
-
-//
-//    @GetMapping("{getComments}")
-//    public List<Comment> getComments(@RequestParam(value = "Item nr") Long itemLong) {
-//        return itemsService.getComments(itemLong);
-//    }
 }
