@@ -38,9 +38,10 @@ public class UserService {
         return userRepository.findAll().stream().findFirst().get().getShoppingCart();
     }
 
-    public void addItemToShoppingCart(Item item){
+    public Item addItemToShoppingCart(Item item){
         userRepository.findAll().stream().findFirst().get().addItemToShoppingCart(item, itemCountRepository);
         userRepository.save(userRepository.findAll().stream().findFirst().get());
+        return item;
     }
 
     public void removeItemFromShoppingCart(Item item){

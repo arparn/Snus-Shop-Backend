@@ -18,8 +18,9 @@ public class UserController {
     @Autowired
     private UserService userRepository;
 
-//    @Autowired
-//    private ItemsService itemsService;
+   @Autowired
+   private ItemsService itemsService;
+
 
     @GetMapping("getWishlist")
     public List<Item> getWishlist() {
@@ -32,9 +33,9 @@ public class UserController {
     }
 
     @PostMapping
-    public void addShoppingCart(@RequestBody Item item){
-        System.out.println("vizu");
-        userRepository.addItemToShoppingCart(item);
+    public Item addShoppingCart(@RequestBody Long id){
+        userRepository.addItemToShoppingCart(itemsService.getItemById(id));
+        return itemsService.getItemById(id);
     }
 
 //    @PostMapping("addWishlist")
