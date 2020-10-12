@@ -18,8 +18,6 @@ Asrc/main/java/ee/taltech/webpage/configuration/SwaggerConfig.java,f\b\fb51808d
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 [
 +.gradle/buildOutputCleanup/cache.properties,f\0\f0ce9208a20ebd9d1f763074c5870c3f31ef115a
-S
-#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 ?
 logs/spring.log,7\6\76a20666cd8f97e7a29654b5cc02219795841972
 t
@@ -38,3 +36,9 @@ o
 0src/main/java/ee/taltech/webpage/model/User.java,1\c\1cbbc3a13421f80d4ff6f0e11c49437f5fd0a6ff
 r
 Bsrc/main/java/ee/taltech/webpage/repository/CommentRepository.java,f\e\febb2c9dad81f396c0e4327899d4699c19b8297a
+;
+gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
+e
+5src/main/java/ee/taltech/webpage/model/ItemCount.java,f\4\f4dc98e47aaa37a27f0a0d532cd2dd194bcc93f8
+l
+<src/main/java/ee/taltech/webpage/service/CommentService.java,3\a\3ad5a00d43b0fc58a43735acd44ddd173810bdc4

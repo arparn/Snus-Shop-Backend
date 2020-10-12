@@ -1,10 +1,9 @@
 
+T
+java:S3655""7Call "Optional#isPresent()" before accessing the value.(™“ö°8û½Ï.
+i
+java:S1128"LRemove this unused import 'ee.taltech.webpage.repository.CommentRepository'.(ËÒ¹ô8û½Ï.
 p
-java:S1128"NRemove this unused import 'ee.taltech.webpage.exeption.ItemNotFoundException'.(É³Ã¿ùÿÿÿÿ8œäˆ¢Ï.
+java:S1128"NRemove this unused import 'ee.taltech.webpage.exeption.ItemNotFoundException'.(É³Ã¿ùÿÿÿÿ8çÖ¹Ï.
 T
-java:S3655"7Call "Optional#isPresent()" before accessing the value.(«‚ö‘8œäˆ¢Ï.
-T
-java:S3655&"7Call "Optional#isPresent()" before accessing the value.(™“ö°8è›­Î.
-U
-java:S1068"3Remove this unused "commentQuantity" private field.(éù±ºûÿÿÿÿ8œäˆ¢Ï.
-X	java:S1259"<This block of commented-out lines of code should be removed.(…×ñ¡8œäˆ¢Ï.
+java:S3655"7Call "Optional#isPresent()" before accessing the value.(«‚ö‘8û½Ï.
