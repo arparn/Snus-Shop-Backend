@@ -18,8 +18,6 @@ Asrc/main/java/ee/taltech/webpage/configuration/SwaggerConfig.java,f\b\fb51808d
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 [
 +.gradle/buildOutputCleanup/cache.properties,f\0\f0ce9208a20ebd9d1f763074c5870c3f31ef115a
-?
-logs/spring.log,7\6\76a20666cd8f97e7a29654b5cc02219795841972
 t
 Dsrc/main/java/ee/taltech/webpage/exeption/ItemNotFoundException.java,4\8\48f142081dea3ebeb70241280387c9186d5e3063
 o
