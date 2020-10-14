@@ -1,6 +1,5 @@
 package ee.taltech.webpage.controller;
 
-import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
@@ -18,19 +17,23 @@ public class UserController {
     @Autowired
     private UserService userRepository;
 
-   @Autowired
-   private ItemsService itemsService;
+    @Autowired
+    private ItemsService itemsService;
 
+//    @GetMapping("getWishlist")
+//    public List<Item> getWishlist() {
+//        return userRepository.getWishlist();
+//    }
 
-    @GetMapping("getWishlist")
-    public List<Item> getWishlist() {
-        return userRepository.getWishlist();
-    }
+//    @PostMapping("addWishlist")
+//    public void addWishlist(@RequestParam( value = "item ID") Long itemId){
+//        userRepository.addAndRemoveWishlist(itemsService.getItemById(itemId));
+//    }
 
-    @GetMapping("shopping-cart")
-    public List<ItemCount> getShoppingCart() {
-        return userRepository.getShoppingCart();
-    }
+//    @PostMapping("clearWishlist")
+//    public void clearWishlist(){
+//        userRepository.clearWishlist();
+//    }
 
     @PostMapping
     public Item addShoppingCart(@RequestBody Long id){
@@ -38,21 +41,14 @@ public class UserController {
         return itemsService.getItemById(id);
     }
 
-//    @PostMapping("addWishlist")
-//    public void addWishlist(@RequestParam( value = "item ID") Long itemId){
-//        userRepository.addAndRemoveWishlist(itemsService.getItemById(itemId));
-//    }
-//
-//    @PostMapping("clearWishlist")
-//    public void clearWishlist(){
-//        userRepository.clearWishlist();
-//    }
-//
-//
-//
+    @GetMapping("shopping-cart")
+    public List<ItemCount> getShoppingCart() {
+        return userRepository.getShoppingCart();
+    }
 //
 //    @PostMapping("removeItemFromShoppingCart")
 //    public void removeItemFromShoppingCart(@RequestParam( value = "item ID") Long itemId){
+//
 //        userRepository.removeItemFromShoppingCart(itemsService.getItemById(itemId));
 //    }
 //
