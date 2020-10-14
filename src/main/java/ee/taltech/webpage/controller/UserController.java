@@ -20,39 +20,40 @@ public class UserController {
     @Autowired
     private ItemsService itemsService;
 
-    @GetMapping("getWishlist")
-    public List<Item> getWishlist() {
-        return userRepository.getWishlist();
+//    @GetMapping("getWishlist")
+//    public List<Item> getWishlist() {
+//        return userRepository.getWishlist();
+//    }
+
+//    @PostMapping("addWishlist")
+//    public void addWishlist(@RequestParam( value = "item ID") Long itemId){
+//        userRepository.addAndRemoveWishlist(itemsService.getItemById(itemId));
+//    }
+
+//    @PostMapping("clearWishlist")
+//    public void clearWishlist(){
+//        userRepository.clearWishlist();
+//    }
+
+    @PostMapping
+    public Item addShoppingCart(@RequestBody Long id){
+        userRepository.addItemToShoppingCart(itemsService.getItemById(id));
+        return itemsService.getItemById(id);
     }
 
-    @PostMapping("addWishlist")
-    public void addWishlist(@RequestParam( value = "item ID") Long itemId){
-        userRepository.addAndRemoveWishlist(itemsService.getItemById(itemId));
-    }
-
-    @PostMapping("clearWishlist")
-    public void clearWishlist(){
-        userRepository.clearWishlist();
-    }
-
-    @GetMapping("getShoppingCart")
+    @GetMapping("shopping-cart")
     public List<ItemCount> getShoppingCart() {
         return userRepository.getShoppingCart();
     }
-
-    @PostMapping("addShoppingCart")
-    public void addShoppingCart(@RequestParam( value = "item ID") Long itemId){
-        userRepository.addItemToShoppingCart(itemsService.getItemById(itemId));
-    }
-
-    @PostMapping("removeItemFromShoppingCart")
-    public void removeItemFromShoppingCart(@RequestParam( value = "item ID") Long itemId){
-
-        userRepository.removeItemFromShoppingCart(itemsService.getItemById(itemId));
-    }
-
-    @PostMapping("clearShoppingCart")
-    public void clearShoppingCart(){
-        userRepository.clearShoppingCart();
-    }
+//
+//    @PostMapping("removeItemFromShoppingCart")
+//    public void removeItemFromShoppingCart(@RequestParam( value = "item ID") Long itemId){
+//
+//        userRepository.removeItemFromShoppingCart(itemsService.getItemById(itemId));
+//    }
+//
+//    @PostMapping("clearShoppingCart")
+//    public void clearShoppingCart(){
+//        userRepository.clearShoppingCart();
+//    }
 }
