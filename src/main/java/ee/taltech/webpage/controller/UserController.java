@@ -45,12 +45,12 @@ public class UserController {
     public List<ItemCount> getShoppingCart() {
         return userRepository.getShoppingCart();
     }
-//
-//    @PostMapping("removeItemFromShoppingCart")
-//    public void removeItemFromShoppingCart(@RequestParam( value = "item ID") Long itemId){
-//
-//        userRepository.removeItemFromShoppingCart(itemsService.getItemById(itemId));
-//    }
+
+    @DeleteMapping("{id}")
+    public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
+        userRepository.removeItemFromShoppingCart(itemsService.getItemById(id));
+        return userRepository.getShoppingCart();
+    }
 //
 //    @PostMapping("clearShoppingCart")
 //    public void clearShoppingCart(){
