@@ -1,9 +1,9 @@
 
 T
 java:S3655""7Call "Optional#isPresent()" before accessing the value.(™“ö°8û½Ï.
-i
-java:S1128"LRemove this unused import 'ee.taltech.webpage.repository.CommentRepository'.(ËÒ¹ô8û½Ï.
 p
 java:S1128"NRemove this unused import 'ee.taltech.webpage.exeption.ItemNotFoundException'.(É³Ã¿ùÿÿÿÿ8çÖ¹Ï.
 T
 java:S3655"7Call "Optional#isPresent()" before accessing the value.(«‚ö‘8û½Ï.
+i
+java:S1128"LRemove this unused import 'ee.taltech.webpage.repository.CommentRepository'.(ËÒ¹ô8û½Ï.

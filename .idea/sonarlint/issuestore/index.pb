@@ -42,3 +42,7 @@ e
 5src/main/java/ee/taltech/webpage/model/ItemCount.java,f\4\f4dc98e47aaa37a27f0a0d532cd2dd194bcc93f8
 l
 <src/main/java/ee/taltech/webpage/service/CommentService.java,3\a\3ad5a00d43b0fc58a43735acd44ddd173810bdc4
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+?
+h2/heroes.mv.db,4\0\4029dfe26536a2c86e4ae90cbe44facb51b7e0ba
