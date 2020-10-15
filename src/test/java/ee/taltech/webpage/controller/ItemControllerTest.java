@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ItemControllerTest {
@@ -33,4 +34,5 @@ class ItemControllerTest {
         Item item = items.get(0);
         assertEquals("Odens", item.getName());
     }
+
 }
