@@ -2,7 +2,6 @@ package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
-import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.service.ItemsService;
 import ee.taltech.webpage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class UserController {
     @Autowired
     private ItemsService itemsService;
 
-    @GetMapping("getWishlist")
+    @GetMapping
     public List<Item> getWishlist() {
         return userRepository.getWishlist();
     }
@@ -41,9 +40,9 @@ public class UserController {
         return itemsService.getItemById(id);
     }
 
-    @PostMapping("wishlist")
-    public Item addAndRemoveWishlist(@RequestBody Long id){
-        userRepository.addAndRemoveWishlist(itemsService.getItemById(id));
+    @PostMapping("wishList")
+    public Item addToWishlist(@RequestBody Long id){
+        userRepository.addToWishlist(itemsService.getItemById(id));
         return itemsService.getItemById(id);
     }
 
@@ -56,6 +55,12 @@ public class UserController {
     public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
         userRepository.removeItemFromShoppingCart(itemsService.getItemById(id));
         return userRepository.getShoppingCart();
+    }
+
+    @DeleteMapping("/{id}/deleteWish")
+    public Item removeFromWishList(@PathVariable Long id){
+        userRepository.removeFromWishlist(itemsService.getItemById(id));
+        return itemsService.getItemById(id);
     }
 
 //    @PostMapping("clear-wishlist")
