@@ -61,9 +61,6 @@ public class ItemsService {
         return item.getRating();
     }
 
-    public void saveAll(List<Item> itemList){
-        itemsRepository.saveAll(itemList);
-    }
 
     // update
     public void update(Item item){

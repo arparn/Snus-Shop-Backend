@@ -39,9 +39,12 @@ public class ItemApplicationUnit implements CommandLineRunner {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private LoadDatabase loadDatabase;
+
     @Override
     public void run(String... args) throws Exception {
-        itemController.start();
+        loadDatabase.initDatabase(itemsRepository, userRepository);
     }
 
 }
