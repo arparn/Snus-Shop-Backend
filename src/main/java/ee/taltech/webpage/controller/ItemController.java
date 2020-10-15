@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("items")
 @RestController
@@ -23,6 +21,7 @@ public class ItemController {
 
     @Autowired
     private CommentService commentService;
+    private int commentQuantity = 0;
 
     @Autowired
     private UserService userService;
@@ -30,20 +29,20 @@ public class ItemController {
     @PostMapping
     public void start(){
         List<Item> items = List.of(
-                new Item( (long) 2, "Odens", "/assets/images/odens.png", 5.60, "Snus", 4.2, 5),
-                new Item( (long) 7, "Thunder", "/assets/images/thunder.png", 7.20, "Snus", 4.2, 4),
-                new Item( (long) 3, "Siberia", "/assets/images/siberia.png", 4.80, "Snus", 3.8, 5),
-                new Item( (long) 4, "KNOX", "/assets/images/knox.png", 6.00, "Snus", 4.6, 3),
-                new Item( (long) 5, "Skruf1", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 8, "Skruf2", "/assets/images/skruf.png", 4.39, "Snus", 3.7, 4),
-                new Item( (long) 9, "Skruf3", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 10, "Skruf4", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 11, "Skruf5", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 12, "Skruf6", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 13, "Skruf7", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 14, "Skruf8", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 15, "Skruf9", "/assets/images/skruf.png", 4.99, "Snus", 3.7, 4),
-                new Item( (long) 6, "Skruf10", "/assets/images/skruf.png", 4.00, "Snus", 3.7, 4)
+                new Item( (long) 2, "Odens", "/assets/images/odens.png", 5.60, "Snus", 5, 0.0, 0.0, 0.0),
+                new Item( (long) 7, "Thunder", "/assets/images/thunder.png", 7.20, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 3, "Siberia", "/assets/images/siberia.png", 4.80, "Snus", 5, 0.0, 0.0, 0.0),
+                new Item( (long) 4, "KNOX", "/assets/images/knox.png", 6.00, "Snus", 3, 0.0, 0.0, 0.0),
+                new Item( (long) 5, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 8, "Skruf", "/assets/images/skruf.png", 4.39, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 9, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 10, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 11, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4,0.0, 0.0, 0.0),
+                new Item( (long) 12, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 13, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 14, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4,0.0, 0.0, 0.0),
+                new Item( (long) 15, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
+                new Item( (long) 6, "Skruf", "/assets/images/skruf.png", 4.00, "Snus", 4,0.0, 0.0, 0.0)
         );
 
         //        itemsRepository.save(items.get(3));
@@ -55,12 +54,29 @@ public class ItemController {
         itemsService.saveAll(items);
     }
 
+
     @GetMapping
     public List<Item> getItems(@RequestParam(required = false) String query) {
         if (query != null){
             return itemsService.getByNameAll(query);
         }
         return itemsService.getAll();
+    }
+
+    @GetMapping("/{id}/comments")
+    public List<Comment> getComments(@PathVariable Long id) {
+        return itemsService.getComments(id);
+    }
+
+    @PostMapping("grade")
+    public void addGrade(@RequestParam Long id, @RequestParam Integer grade){
+        itemsService.addGrade(id, grade);
+    }
+
+    @PostMapping("{id}")
+    public Comment addComment(@RequestBody Comment comment,
+                              @PathVariable Long id) {
+        return commentService.addComment(comment, itemsService.getItemById(id));
     }
 
     @GetMapping("{id}")
@@ -120,17 +136,4 @@ public class ItemController {
 //        return items;
 //    }
 //
-    @PostMapping("{addComment}")
-    public Comment addComment(@RequestParam(value = "Your first name") String firstName,
-                              @RequestParam(value = "Your last name") String lastName,
-                              @RequestParam(value = "Your comment") String comment,
-                              @RequestParam(value = "Item nr") Long itemLong) {
-        return commentService.addComment(firstName, lastName, comment, itemsService.getItemById(itemLong));
-    }
-
-
-    @GetMapping("{getComments}")
-    public List<Comment> getComments(@RequestParam(value = "Item nr") Long itemLong) {
-        return itemsService.getComments(itemLong);
-    }
 }

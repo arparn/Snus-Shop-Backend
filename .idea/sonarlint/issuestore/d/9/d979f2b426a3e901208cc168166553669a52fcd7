@@ -1,5 +1,10 @@
 
-]	java:S125d"<This block of commented-out lines of code should be removed.(»ùŠıÿÿÿÿ8›äˆ¢Ï.
+]	java:S125t"<This block of commented-out lines of code should be removed.(¡Ÿ¥ùÿÿÿÿ8ü«ëÏ.
 U
-java:S1068"3Remove this unused "commentQuantity" private field.(éù±ºûÿÿÿÿ8›äˆ¢Ï.
-X	java:S125Z"<This block of commented-out lines of code should be removed.(Â±™Ÿ8›äˆ¢Ï.
+java:S1068"3Remove this unused "commentQuantity" private field.(éù±ºûÿÿÿÿ8ü«ëÏ.
+]	java:S125y"<This block of commented-out lines of code should be removed.(¶Ù Ïüÿÿÿÿ8ü«ëÏ.
+X	java:S1250"<This block of commented-out lines of code should be removed.(á¢Ó˜8ü«ëÏ.
+|
+java:S1192$"ZDefine a constant instead of duplicating this literal "/assets/images/skruf.png" 10 times.(êâ¾Üşÿÿÿÿ8‰ïûÊÒ.
+i
+java:S1192$"GDefine a constant instead of duplicating this literal "Skruf" 10 times.(êâ¾Üşÿÿÿÿ8‰ïûÊÒ.
