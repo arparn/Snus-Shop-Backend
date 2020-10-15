@@ -68,9 +68,10 @@ public class ItemController {
         return itemsService.getComments(id);
     }
 
-    @PostMapping("grade")
-    public void addGrade(@RequestParam Long id, @RequestParam Integer grade){
-        itemsService.addGrade(id, grade);
+    @PostMapping("/{id}/grade")
+    public Double addGrade(@RequestBody Integer rating,
+                         @PathVariable Long id) {
+        return itemsService.addGrade(id, rating);
     }
 
     @PostMapping("{id}")

@@ -54,10 +54,11 @@ public class ItemsService {
         return getItemById(itemLong).getComments();
     }
 
-    public void addGrade(Long id, Integer grade){
+    public Double addGrade(Long id, Integer grade){
         Item item = getItemById(id);
         item.addGrade(grade);
         itemsRepository.save(item);
+        return item.getRating();
     }
 
     public void saveAll(List<Item> itemList){

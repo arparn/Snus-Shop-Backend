@@ -37,10 +37,11 @@ public class Item {
         this.strength = strength;
     }
 
-    public void addGrade(Integer grade){
+    public Double addGrade(Integer grade){
         ratingsSum += Double.valueOf(grade);
         ratingsCount ++;
         rating = (double) ratingsSum / ratingsCount;
+        return rating;
     }
 
 
