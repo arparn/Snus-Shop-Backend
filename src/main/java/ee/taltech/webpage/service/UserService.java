@@ -24,8 +24,8 @@ public class UserService {
         return userRepository.findAll().stream().findFirst().get().getWishlist();
     }
 
-    public void addAndRemoveWishlist(Item item){
-        userRepository.findAll().stream().findFirst().get().addAndRemoveWishlist(item);
+    public void addToWishlist(Item item){
+        userRepository.findAll().stream().findFirst().get().addToWishlist(item);
         userRepository.save(userRepository.findAll().stream().findFirst().get());
     }
 
@@ -46,6 +46,11 @@ public class UserService {
 
     public void removeItemFromShoppingCart(Item item){
         userRepository.findAll().stream().findFirst().get().removeItemFromShoppingCart(item, itemCountRepository);
+    }
+
+    public void removeFromWishlist(Item item) {
+        userRepository.findAll().stream().findFirst().get().removeFromWishlist(item);
+        userRepository.save(userRepository.findAll().stream().findFirst().get());
     }
 
     public void clearShoppingCart(){

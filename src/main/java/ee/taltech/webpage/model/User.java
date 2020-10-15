@@ -27,12 +27,12 @@ public class User {
     @ManyToMany
     private List<ItemCount> shoppingCart = new ArrayList<>();
 
-    public void addAndRemoveWishlist(Item item){
-        if (!wishlist.contains(item)) {
-            wishlist.add(item);
-        }  else {
-            wishlist.remove(item);
-        }
+    public void addToWishlist(Item item){
+        wishlist.add(item);
+    }
+
+    public void removeFromWishlist(Item item){
+        wishlist.remove(item);
     }
 
     public void clearWishlist(){
