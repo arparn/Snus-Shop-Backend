@@ -63,6 +63,12 @@ public class UserController {
         return itemsService.getItemById(id);
     }
 
+    @DeleteMapping("clear")
+    public List<ItemCount> clearShoppingCart() {
+        userRepository.clearShoppingCart();
+        return userRepository.getShoppingCart();
+    }
+
 //    @PostMapping("clear-wishlist")
 //    public void clearWishlist(){
 //        userRepository.clearWishlist();
