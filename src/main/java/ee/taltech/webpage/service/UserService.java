@@ -55,6 +55,7 @@ public class UserService {
 
     public void clearShoppingCart(){
         userRepository.findAll().stream().findFirst().get().clearShoppingCart();
+        userRepository.save(userRepository.findAll().stream().findFirst().get());
     }
 
 }
