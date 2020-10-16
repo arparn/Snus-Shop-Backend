@@ -1,7 +1,16 @@
 package ee.taltech.webpage.a_theory.question6.sheep;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@RequestMapping("sheep")
+@RestController
+@SpringBootApplication
 public class SheepFarm {
 
     //todo for question 6 there are 4 assignments in total
@@ -31,15 +40,40 @@ public class SheepFarm {
     // That's it. Can you do that for me?
 
     //todo here are some examples of empty methods
+
+    public List<Sheep> dataBase = new ArrayList<>();
+    public Integer index = 0;
+
     List<Sheep> emptyMethodReturnList(){
         return List.of();
     }
+
 
     Sheep emptyMethodReturn1(){
         return new Sheep();
     }
 
+
     void emptyMethodVoid(){
 
+    }
+
+    @PostMapping
+    private void addSheep(Sheep sheep) {
+        index++;
+        sheep.setId((long) index);
+        dataBase.add(sheep);
+    }
+
+    @DeleteMapping("{id}")
+    private void deleteSheep(@PathVariable Long id) {
+        Optional<Sheep> neededSheep= dataBase.stream().filter(x->x.getId().equals(id)).findFirst();
+        neededSheep.ifPresent(sheep -> dataBase.remove(sheep));
+    }
+
+    @GetMapping("{id}")
+    private Sheep getSheepFromDataBase(@RequestParam Long id) {
+        Optional<Sheep> neededSheep= dataBase.stream().filter(x->x.getId().equals(id)).findFirst();
+        return neededSheep.orElse(null);
     }
 }
