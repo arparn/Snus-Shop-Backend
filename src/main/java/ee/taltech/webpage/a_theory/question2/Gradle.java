@@ -9,20 +9,24 @@ public class Gradle {
     //todo p1
     // In your words (do not use wiki definitions)
     // What is gradle?
-    // Answer:
+    // Answer: gradle is build automation tool, so that you can build almost any type of software
 
     //todo p2
     // What is gradle wrapper? Why are we using it instead of gradle?
-    // Answer:
+    // Answer: gradle wrapper is additional part of build gradle. We are using gradle wrapper because this system
+    // guarantees that assembly will run always with the correct version of gradle needed, it controls what version of
+    // gradle exists on computer and if it doesnt match, then gradle wrapper will ignore it and install correct one.
+    // Person that wants to run gradle wrapper doesnt need to install correct version, he just need default Java
+    // with all other problems will work gradle wrapper
 
     //todo p3
     // Name at least 1 alternative to gradle
-    // 1
+    // maven
 
     //todo p4
     // Name 3 different benefits or reasons for using gradle
-    // 1
-    // 2
-    // 3
+    // High performance
+    // JVM foundation
+    // Conventions
 
 }
