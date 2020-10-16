@@ -67,7 +67,7 @@ public class ItemController {
 
     @PostMapping("/{id}/grade")
     public Double addGrade(@RequestBody Integer rating,
-                         @PathVariable Long id) {
+                           @PathVariable Long id) {
         return itemsService.addGrade(id, rating);
     }
 
