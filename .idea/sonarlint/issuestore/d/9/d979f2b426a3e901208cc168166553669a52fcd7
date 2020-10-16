@@ -1,15 +1,8 @@
 
-]
-java:S4684M"@Replace this persistent entity with a simple POJO or DTO object.(é‘ö“8ﬁ¶Ü€—.
-]	java:S125y"<This block of commented-out lines of code should be removed.(∂Ÿ†œ¸ˇˇˇˇ8ﬁ¶Ü€—.
-W	java:S1252"<This block of commented-out lines of code should be removed.(»Ó†;8Ê„Ø¬“.
-|
-java:S1192$"ZDefine a constant instead of duplicating this literal "/assets/images/skruf.png" 10 times.(¥˛õå˛ˇˇˇˇ8Ê„Ø¬“.
-]	java:S125t"<This block of commented-out lines of code should be removed.(°üé•˘ˇˇˇˇ8ﬁ¶Ü€—.
+]	java:S125r"<This block of commented-out lines of code should be removed.(°üé•˘ˇˇˇˇ8¸´éÎœ.
+]	java:S125w"<This block of commented-out lines of code should be removed.(∂Ÿ†œ¸ˇˇˇˇ8¸´éÎœ.
 U
-java:S1068"3Remove this unused "commentQuantity" private field.(È˘±∫˚ˇˇˇˇ8ﬁ¶Ü€—.
-Y	java:S125Å"<This block of commented-out lines of code should be removed.(Î≠ª°8ﬁ¶Ü€—.
-i
-java:S1192$"GDefine a constant instead of duplicating this literal "Skruf" 10 times.(¥˛õå˛ˇˇˇˇ8Ê„Ø¬“.
-X	java:S1250"<This block of commented-out lines of code should be removed.(·¢”ò8Ê„Ø¬“.
-Y	java:S125Ö"<This block of commented-out lines of code should be removed.(“Ë¡ß8ﬁ¶Ü€—.
+java:S1068"3Remove this unused "commentQuantity" private field.(È˘±∫˚ˇˇˇˇ8¸´éÎœ.
+]
+java:S4684K"@Replace this persistent entity with a simple POJO or DTO object.(é‘ö“8≤ú§Ó“.
+]	java:S125"<This block of commented-out lines of code should be removed.(≥Ω©Ω¯ˇˇˇˇ8à®¶Ó“.
