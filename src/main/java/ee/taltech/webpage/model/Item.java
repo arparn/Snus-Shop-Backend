@@ -27,13 +27,11 @@ public class Item {
     @ManyToMany
     private List<Comment> comments = new LinkedList<>();
 
-    public Item(Long id, String name, String url, Double price, String description, Integer strength,  Double rating, Double ratingsCount, Double ratingsSum) {
-        this.id = id;
+    public Item(String name, String url, Double price, String description, Integer strength) {
         this.name = name;
         this.url = url;
         this.price = price;
         this.description = description;
-        this.rating = rating;
         this.strength = strength;
     }
 
