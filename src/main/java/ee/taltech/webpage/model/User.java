@@ -1,8 +1,6 @@
 package ee.taltech.webpage.model;
 
 import ee.taltech.webpage.repository.ItemCountRepository;
-import ee.taltech.webpage.repository.ItemsRepository;
-import ee.taltech.webpage.repository.UserRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

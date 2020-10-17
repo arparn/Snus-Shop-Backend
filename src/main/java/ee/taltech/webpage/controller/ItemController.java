@@ -2,10 +2,8 @@ package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.model.Item;
-import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.service.CommentService;
 import ee.taltech.webpage.service.ItemsService;
-import ee.taltech.webpage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,29 +77,4 @@ public class ItemController {
         Collections.reverse(items);
         return items;
     }
-
-//    @GetMapping("{name}")
-//    public Item getItemByNameOne( @PathVariable String name) {
-//        return itemsService.getByNameOne(name);
-//    }
-
-//    @GetMapping("{ratingMin}")
-//    public List<Item> getItemByRatingLessPopular() {
-//        List<Item> items = itemsService.getByRatingMostPopular();
-//        Collections.reverse(items);
-//        return items;
-//    }
-//
-//
-//    @GetMapping("{alphabetOrderAtoZ}")
-//    public List<Item> getItemByAlphabetAtoZ() {
-//    return itemsService.getItemByAlphabetAtoZ();}
-//
-//    @GetMapping("{alphabetOrderZtoA}")
-//    public List<Item> getItemByAlphabetZtoA() {
-//        List<Item> items = itemsService.getItemByAlphabetAtoZ();
-//        Collections.reverse(items);
-//        return items;
-//    }
-//
 }

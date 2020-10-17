@@ -24,11 +24,6 @@ public class UserController {
         return userRepository.getWishlist();
     }
 
-//    @PostMapping("clearWishlist")
-//    public void clearWishlist(){
-//        userRepository.clearWishlist();
-//    }
-
     @PostMapping("shopping-cart")
     public Item addShoppingCart(@RequestBody Long id){
         userRepository.addItemToShoppingCart(itemsService.getItemById(id));
@@ -63,9 +58,4 @@ public class UserController {
         userRepository.clearShoppingCart();
         return userRepository.getShoppingCart();
     }
-
-//    @PostMapping("clear-wishlist")
-//    public void clearWishlist(){
-//        userRepository.clearWishlist();
-//    }
 }
