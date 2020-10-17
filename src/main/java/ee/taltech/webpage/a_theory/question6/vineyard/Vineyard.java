@@ -54,6 +54,11 @@ public class Vineyard {
 
     public List<Wine> wines = new ArrayList<>();
 
+    @GetMapping
+    public List<Wine> getWines() {
+        return this.wines;
+    }
+
     @GetMapping("{id}")
     public String getWineDescription(@PathVariable Long id) {
         Optional<Wine> searchingWine = wines.stream().filter(wine -> wine.getId().equals(id)).findFirst();
