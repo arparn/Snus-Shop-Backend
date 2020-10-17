@@ -1,6 +1,16 @@
 package ee.taltech.webpage.a_theory.question6.vineyard;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@RequestMapping("vineyard")
+@RestController
+@SpringBootApplication
 
 public class Vineyard {
 
@@ -40,7 +50,79 @@ public class Vineyard {
         return new Wine();
     }
 
-    void emptyMethodVoid(){
+    void emptyMethodVoid(){ }
 
+    public List<Wine> wines = new ArrayList<>();
+
+    @GetMapping("{id}")
+    public String getWineDescription(@PathVariable Long id) {
+        Optional<Wine> searchingWine = wines.stream().filter(wine -> wine.getId().equals(id)).findFirst();
+        return searchingWine.map(Wine::getDescription).orElse(null);
+    }
+
+    @GetMapping("{region}/region")
+    public List<Wine> filterByRegion(@PathVariable String region) {
+        return wines.stream().filter(wine -> wine.getRegion().equals(region)).collect(Collectors.toList());
+    }
+
+    @GetMapping("{year}/year")
+    public List<Wine> filterByYear(@PathVariable Integer year) {
+        return wines.stream().filter(wine -> wine.getYear().equals(year)).collect(Collectors.toList());
+    }
+
+    @GetMapping("{name}/name")
+    public Wine getByName(@PathVariable String name) {
+        Optional<Wine> searchedWine = wines.stream().filter(wine -> wine.getName().equals(name)).findFirst();
+        return searchedWine.orElse(null);
+    }
+
+    @GetMapping("{grape}/grape")
+    public Wine getByGrape(@PathVariable String grape) {
+        Optional<Wine> searchedWine = wines.stream().filter(wine -> wine.getGrape().equals(grape)).findFirst();
+        return searchedWine.orElse(null);
+    }
+
+    @PutMapping("{id}")
+    public Wine changeWineName(@RequestBody Wine wine, @PathVariable Long id) {
+        Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
+        if (searchedWine.isPresent()) {
+            searchedWine.get().setName(wine.getName());
+            return searchedWine.get();
+        } else {
+            return null;
+        }
+    }
+
+    @PutMapping("{id}/region")
+    public Wine changeWineRegion(@RequestBody Wine wine, @PathVariable Long id) {
+        Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
+        if (searchedWine.isPresent()) {
+            searchedWine.get().setRegion(wine.getRegion());
+            return searchedWine.get();
+        } else {
+            return null;
+        }
+    }
+
+    @PutMapping("{id}/grape")
+    public Wine changeWineGrape(@RequestBody Wine wine, @PathVariable Long id) {
+        Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
+        if (searchedWine.isPresent()) {
+            searchedWine.get().setGrape(wine.getGrape());
+            return searchedWine.get();
+        } else {
+            return null;
+        }
+    }
+
+    @PutMapping("{id}/description")
+    public Wine changeWineDescription(@RequestBody Wine wine, @PathVariable Long id) {
+        Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
+        if (searchedWine.isPresent()) {
+            searchedWine.get().setDescription(wine.getDescription());
+            return searchedWine.get();
+        } else {
+            return null;
+        }
     }
 }
