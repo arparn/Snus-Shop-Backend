@@ -1,7 +1,17 @@
 package ee.taltech.webpage.a_theory.question6.chocolate;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@RequestMapping("chocolate")
+@RestController
+@SpringBootApplication
 public class Chocolate {
 
     //todo for question 6 there are 4 assignments in total
@@ -30,6 +40,7 @@ public class Chocolate {
     // I take existing Sachertorte and I make it better and next week I make it better and next week...
     // Can you do this? I need this system tomorrow!
 
+    public List<Cake> cakes = new LinkedList<>();
 
     //todo here are some examples of empty methods
     List<Cake> emptyMethodReturnList(){
@@ -42,5 +53,40 @@ public class Chocolate {
 
     void emptyMethodVoid(){
 
+    }
+
+    @GetMapping()
+    private List<Cake> getCakes(){
+        return cakes;
+    }
+
+    @GetMapping("ingredients")
+    private List<Cake> getByIngredients(@RequestParam List<String> ingredients){
+        return cakes.stream().filter(c -> c.getIngredients().containsAll(ingredients)).collect(Collectors.toList());
+    }
+
+    @GetMapping("toppings")
+    private List<Cake> getByToppings(@RequestParam List<String> toppings){
+        return cakes.stream().filter(c -> c.getToppings().containsAll(toppings)).collect(Collectors.toList());
+    }
+
+    @PostMapping
+    private Cake addCake(@RequestBody Cake cake){
+        cakes.add(cake);
+        return cake;
+    }
+
+    @DeleteMapping
+    private Optional<Cake> sellCake(Cake cake){
+        Optional<Cake> cakeToSell = (cakes.stream().filter(c -> c.getId().equals(cake.getId()) &&
+                c.getToppings().equals(cake.getToppings()) &&
+                c.getIngredients().equals(cake.getIngredients()) &&
+                c.getSize().equals(cake.getSize()) &&
+                c.getSweetness().equals(cake.getSweetness()))).findFirst();
+        if (cakeToSell.isPresent()){
+            cakes.remove(cakeToSell.get());
+            return cakeToSell;
+        }
+        return Optional.empty();
     }
 }

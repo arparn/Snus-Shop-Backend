@@ -24,7 +24,7 @@ public class ApplicationLayers {
     //todo p3
     // We use objects to transport data between different layers.
     // What is the difference between Entity and Dto? What is same between them?
-    // Answer: The same is that they are data transfer objects. Difference is that if we want to hide somethin
+    // Answer: The same is that they are data transfer objects. Difference is that if we want to hide something
     // from client, for example if we have some field that client don't need to read and change, Dto able us to do this.
 
 }
