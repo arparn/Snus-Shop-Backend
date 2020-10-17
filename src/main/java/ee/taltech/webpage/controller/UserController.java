@@ -24,11 +24,6 @@ public class UserController {
         return userRepository.getWishlist();
     }
 
-//    @PostMapping("addWishlist")
-//    public void addWishlist(@RequestParam( value = "item ID") Long itemId){
-//        userRepository.addAndRemoveWishlist(itemsService.getItemById(itemId));
-//    }
-
 //    @PostMapping("clearWishlist")
 //    public void clearWishlist(){
 //        userRepository.clearWishlist();
@@ -40,7 +35,7 @@ public class UserController {
         return itemsService.getItemById(id);
     }
 
-    @PostMapping("wishList")
+    @PostMapping("wish-list")
     public Item addToWishlist(@RequestBody Long id){
         userRepository.addToWishlist(itemsService.getItemById(id));
         return itemsService.getItemById(id);
@@ -57,13 +52,13 @@ public class UserController {
         return userRepository.getShoppingCart();
     }
 
-    @DeleteMapping("/{id}/deleteWish")
+    @DeleteMapping("/{id}/wish-list")
     public Item removeFromWishList(@PathVariable Long id){
         userRepository.removeFromWishlist(itemsService.getItemById(id));
         return itemsService.getItemById(id);
     }
 
-    @DeleteMapping("clear")
+    @DeleteMapping("shopping-cart")
     public List<ItemCount> clearShoppingCart() {
         userRepository.clearShoppingCart();
         return userRepository.getShoppingCart();

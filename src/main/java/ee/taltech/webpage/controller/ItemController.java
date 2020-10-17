@@ -21,36 +21,6 @@ public class ItemController {
 
     @Autowired
     private CommentService commentService;
-    private int commentQuantity = 0;
-
-    @Autowired
-    private UserService userService;
-
-//    @PostMapping
-//    public void start(){
-//        List<Item> items = List.of(
-//                new Item( (long) 2, "Odens", "/assets/images/odens.png", 5.60, "Snus", 5, 0.0, 0.0, 0.0),
-//                new Item( (long) 7, "Thunder", "/assets/images/thunder.png", 7.20, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 3, "Siberia", "/assets/images/siberia.png", 4.80, "Snus", 5, 0.0, 0.0, 0.0),
-//                new Item( (long) 4, "KNOX", "/assets/images/knox.png", 6.00, "Snus", 3, 0.0, 0.0, 0.0),
-//                new Item( (long) 5, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 8, "Skruf", "/assets/images/skruf.png", 4.39, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 9, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 10, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 11, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4,0.0, 0.0, 0.0),
-//                new Item( (long) 12, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 13, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 14, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4,0.0, 0.0, 0.0),
-//                new Item( (long) 15, "Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4, 0.0, 0.0, 0.0),
-//                new Item( (long) 6, "Skruf", "/assets/images/skruf.png", 4.00, "Snus", 4,0.0, 0.0, 0.0)
-//        );
-//
-//        //        itemsRepository.save(items.get(3));
-//        //
-//        //        user.addItemToWishlist(items.get(3));
-//        User user = new User();
-//    }
-
 
     @GetMapping
     public List<Item> getItems(@RequestParam(required = false) String query) {
@@ -65,7 +35,7 @@ public class ItemController {
         return itemsService.getComments(id);
     }
 
-    @PostMapping("/{id}/grade")
+    @PostMapping("/{id}/rating")
     public Double addGrade(@RequestBody Integer rating,
                            @PathVariable Long id) {
         return itemsService.addGrade(id, rating);
@@ -82,28 +52,28 @@ public class ItemController {
         return itemsService.getItemById(id);
     }
 
-    @GetMapping("ratingMax")
+    @GetMapping("rating-max")
     public List<Item> getItemByRatingMostPopular() {
         return itemsService.getByRatingMostPopular();
     }
 
-    @GetMapping("strengthMax")
+    @GetMapping("strength-max")
     public List<Item> getItemByStrengthMax() {
         return itemsService.getByStrengthMax();
     }
 
-    @GetMapping("strengthMin")
+    @GetMapping("strength-min")
     public List<Item> getItemByStrengthMin() {
         List<Item> items = itemsService.getByStrengthMax();
         Collections.reverse(items);
         return items;
     }
 
-    @GetMapping("priceMax")
+    @GetMapping("price-max")
     public List<Item> getItemByPriceMax() {
         return itemsService.getByPriceMax();}
 
-    @GetMapping("priceMin")
+    @GetMapping("price-min")
     public List<Item> getItemByPriceMin() {
         List<Item> items = itemsService.getByPriceMax();
         Collections.reverse(items);
