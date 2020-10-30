@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,7 +24,8 @@ public class ItemsService {
     }
 
     public Item getItemById(Long id) {
-        return  itemsRepository.findById(id).get();
+        Optional<Item> item = itemsRepository.findById(id);
+        return item.orElse(null);
     }
 
     public List<Item> getByNameAll(String name) {
@@ -31,7 +33,8 @@ public class ItemsService {
     }
 
     public Item getByNameOne(String name) {
-        return  itemsRepository.findAll().stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).findFirst().get();
+        Optional<Item> item = itemsRepository.findAll().stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).findFirst();
+        return item.orElse(null);
     }
 
     public List<Item> getByRatingMostPopular() {

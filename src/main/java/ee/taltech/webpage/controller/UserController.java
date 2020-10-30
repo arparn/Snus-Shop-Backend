@@ -26,14 +26,12 @@ public class UserController {
 
     @PostMapping("shopping-cart")
     public Item addShoppingCart(@RequestBody Long id){
-        userService.addItemToShoppingCart(itemsService.getItemById(id));
-        return itemsService.getItemById(id);
+        return userService.addItemToShoppingCart(itemsService.getItemById(id));
     }
 
     @PostMapping("wish-list")
     public Item addToWishlist(@RequestBody Long id){
-        userService.addToWishlist(itemsService.getItemById(id));
-        return itemsService.getItemById(id);
+        return userService.addToWishlist(itemsService.getItemById(id));
     }
 
     @GetMapping("shopping-cart")
