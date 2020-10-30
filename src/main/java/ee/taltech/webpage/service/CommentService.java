@@ -16,7 +16,6 @@ public class CommentService {
     private ItemsService itemsService;
 
     public Comment addComment(Comment comment, Item item){
-        commentRepository.save(comment);
         item.addComment(comment);
         commentRepository.save(comment);
         itemsService.update(item);
