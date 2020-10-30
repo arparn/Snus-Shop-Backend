@@ -26,7 +26,9 @@ public class User {
     private List<ItemCount> shoppingCart = new ArrayList<>();
 
     public void addToWishlist(Item item){
-        wishlist.add(item);
+        if (!wishlist.contains(item)){
+            wishlist.add(item);
+        }
     }
 
     public void removeFromWishlist(Item item){
