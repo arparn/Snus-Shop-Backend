@@ -16,9 +16,8 @@ public class CommentService {
     private ItemsService itemsService;
 
     public Comment addComment(Comment comment, Item item){
+        item.addComment(comment);
         commentRepository.save(comment);
-        item.addComment(commentRepository.findAll().stream().filter(x->x.getId().equals(comment.getId())).findFirst().get());
-        commentRepository.save(item.getComments().get(0));
         itemsService.update(item);
         return comment;
     }

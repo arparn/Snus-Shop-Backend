@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.event.ItemEvent;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,41 +23,63 @@ public class UserService {
     private ItemCountRepository itemCountRepository;
 
     public List<Item> getWishlist(){
-        return userRepository.findAll().stream().findFirst().get().getWishlist();
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        return user.map(User::getWishlist).orElse(null);
     }
 
-    public void addToWishlist(Item item){
-        userRepository.findAll().stream().findFirst().get().addToWishlist(item);
-        userRepository.save(userRepository.findAll().stream().findFirst().get());
+    public Item addToWishlist(Item item){
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        if (user.isPresent()){
+            user.get().addToWishlist(item);
+            userRepository.save(user.get());
+        }
+        return item;
     }
 
     public void clearWishlist(){
-        userRepository.findAll().stream().findFirst().get().clearWishlist();
-        userRepository.save(userRepository.findAll().stream().findFirst().get());
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        if (user.isPresent()){
+            user.get().clearWishlist();
+            userRepository.save(user.get());
+        }
     }
 
     public List<ItemCount> getShoppingCart(){
-        return userRepository.findAll().stream().findFirst().get().getShoppingCart();
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        if (user.isPresent()){
+            return user.get().getShoppingCart();
+        }
+        return new LinkedList<>();
     }
 
     public Item addItemToShoppingCart(Item item){
-        userRepository.findAll().stream().findFirst().get().addItemToShoppingCart(item, itemCountRepository);
-        userRepository.save(userRepository.findAll().stream().findFirst().get());
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        if (user.isPresent()){
+            user.get().addItemToShoppingCart(item, itemCountRepository);
+            userRepository.save(user.get());
+        }
         return item;
     }
 
     public void removeItemFromShoppingCart(Item item){
-        userRepository.findAll().stream().findFirst().get().removeItemFromShoppingCart(item, itemCountRepository);
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        user.ifPresent(value -> value.removeItemFromShoppingCart(item, itemCountRepository));
     }
 
     public void removeFromWishlist(Item item) {
-        userRepository.findAll().stream().findFirst().get().removeFromWishlist(item);
-        userRepository.save(userRepository.findAll().stream().findFirst().get());
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        if (user.isPresent()){
+            user.get().removeFromWishlist(item);
+            userRepository.save(user.get());
+        }
     }
 
     public void clearShoppingCart(){
-        userRepository.findAll().stream().findFirst().get().clearShoppingCart();
-        userRepository.save(userRepository.findAll().stream().findFirst().get());
+        Optional<User> user = userRepository.findAll().stream().findFirst();
+        if (user.isPresent()){
+            user.get().clearShoppingCart();
+            userRepository.save(user.get());
+        }
     }
 
 }

@@ -14,48 +14,46 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userRepository;
+    private UserService userService;
 
     @Autowired
     private ItemsService itemsService;
 
     @GetMapping
     public List<Item> getWishlist() {
-        return userRepository.getWishlist();
+        return userService.getWishlist();
     }
 
     @PostMapping("shopping-cart")
     public Item addShoppingCart(@RequestBody Long id){
-        userRepository.addItemToShoppingCart(itemsService.getItemById(id));
-        return itemsService.getItemById(id);
+        return userService.addItemToShoppingCart(itemsService.getItemById(id));
     }
 
     @PostMapping("wish-list")
     public Item addToWishlist(@RequestBody Long id){
-        userRepository.addToWishlist(itemsService.getItemById(id));
-        return itemsService.getItemById(id);
+        return userService.addToWishlist(itemsService.getItemById(id));
     }
 
     @GetMapping("shopping-cart")
     public List<ItemCount> getShoppingCart() {
-        return userRepository.getShoppingCart();
+        return userService.getShoppingCart();
     }
 
     @DeleteMapping("{id}")
     public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
-        userRepository.removeItemFromShoppingCart(itemsService.getItemById(id));
-        return userRepository.getShoppingCart();
+        userService.removeItemFromShoppingCart(itemsService.getItemById(id));
+        return userService.getShoppingCart();
     }
 
     @DeleteMapping("/{id}/wish-list")
     public Item removeFromWishList(@PathVariable Long id){
-        userRepository.removeFromWishlist(itemsService.getItemById(id));
+        userService.removeFromWishlist(itemsService.getItemById(id));
         return itemsService.getItemById(id);
     }
 
     @DeleteMapping("shopping-cart")
     public List<ItemCount> clearShoppingCart() {
-        userRepository.clearShoppingCart();
-        return userRepository.getShoppingCart();
+        userService.clearShoppingCart();
+        return userService.getShoppingCart();
     }
 }
