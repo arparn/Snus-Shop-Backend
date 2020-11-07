@@ -17,7 +17,7 @@ build heroes:
     paths:
       - build/libs
   tags:
-    - heroes
+    - snus_shop-backend
   script:
     - ./gradlew assemble
 
