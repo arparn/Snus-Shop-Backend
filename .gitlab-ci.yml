@@ -7,7 +7,7 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-build heroes:
+build snus_shop-backend:
   stage: build
   cache:
     paths:
@@ -21,14 +21,14 @@ build heroes:
   script:
     - ./gradlew assemble
 
-test heroes:
+test snus_shop-backend:
   stage: test
   tags:
-    - heroes
+    - snus_shop-backend
   script:
     - ./gradlew check
 
-deploy heroes:
+deploy snus_shop-backend:
   stage: deploy
   only:
     refs:
