@@ -7,7 +7,7 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-build snus_shop-backend:
+build shop:
   stage: build
   cache:
     paths:
@@ -17,24 +17,24 @@ build snus_shop-backend:
     paths:
       - build/libs
   tags:
-    - snus_shop-backend
+    - shop
   script:
     - ./gradlew assemble
 
-test snus_shop-backend:
+test shop:
   stage: test
   tags:
-    - snus_shop-backend
+    - shop
   script:
     - ./gradlew check
 
-deploy snus_shop-backend:
+deploy shop:
   stage: deploy
   only:
     refs:
       - master
   tags:
-    - snus_shop-backend
+    - shop
   script:
     - mkdir -p ~/api-deployment # mkdir make folder api-deployment ~/ is under current user directory so for gitlab it would be /home/gitlab/api-deployment
     - rm -rf ~/api-deployment/* # rm remove -rf is recursive files from api-deployment
