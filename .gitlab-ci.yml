@@ -32,7 +32,7 @@ deploy shop:
   stage: deploy
   only:
     refs:
-      - master
+      - arparn-gitlab-ci
   tags:
     - shop
   script:
