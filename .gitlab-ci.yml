@@ -15,7 +15,7 @@ build shop:
       - .gradle/caches
   artifacts:
     paths:
-      - build/libs/snus_shop-wolfsnus-0.0.1-SNAPSHOT.jar
+      - build/libs
   tags:
     - shop
   script:
