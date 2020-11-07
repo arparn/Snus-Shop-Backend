@@ -15,7 +15,7 @@ build heroes:
       - .gradle/caches
   artifacts:
     paths:
-      - build/
+      - build/libs
   tags:
     - heroes
   script:
