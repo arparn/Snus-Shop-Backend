@@ -38,7 +38,7 @@ public class Item {
     public Double addGrade(Integer grade){
         ratingsSum += Double.valueOf(grade);
         ratingsCount ++;
-        rating = (double) ratingsSum / ratingsCount;
+        rating = (double)  Math.round(ratingsSum / ratingsCount * 10) / 10;
         return rating;
     }
 
