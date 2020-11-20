@@ -11,6 +11,6 @@ public class FirstReadMeSOLID {
     // S (Nr1isS.java) stands for Single-responsibility and is done by Oleg Pahhomov as an example
     // O (Nr2isO.java) stands for Open/Closed principle and is done by Artur-Aleksander Pärnoja
     // L (Nr3isL.java)
-    // I (Nr4isI.java)
+    // I (Nr4isI.java) stands for Interface segregation principle and is done by Nikita Birjukovs.
     // D (Nr5isD.java)
 }
