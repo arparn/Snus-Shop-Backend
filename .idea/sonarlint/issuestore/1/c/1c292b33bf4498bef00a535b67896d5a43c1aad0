@@ -1,33 +1,5 @@
 
-L
-java:S36550"7Call "Optional#isPresent()" before accessing the value.(¸Ðä
-Y
-java:S3655:"7Call "Optional#isPresent()" before accessing the value.(ÂŒ©õýÿÿÿÿ8ðÆº—Ó.
-Y
-java:S36554"7Call "Optional#isPresent()" before accessing the value.(ºµ´¡ùÿÿÿÿ8¶—âàÒ.
-R
-java:S3655&"7Call "Optional#isPresent()" before accessing the value.(Žµîûþÿÿÿÿ
 W
-java:S1128":Remove this unused import 'ee.taltech.webpage.model.User'.(ÂÌ»‘8ñåÊ‹Ó.
-P
-java:S1128"5Remove this unused import 'java.awt.event.ItemEvent'.(¬§„Âÿÿÿÿÿ
-Y
-java:S3655+"7Call "Optional#isPresent()" before accessing the value.(ÂŒ©õýÿÿÿÿ8ÄŒÌãÒ.
-R
-java:S3655"7Call "Optional#isPresent()" before accessing the value.(¹Æææÿÿÿÿÿ
-M
-java:S36559"7Call "Optional#isPresent()" before accessing the value.(â½Æ£
-R
-java:S3655""7Call "Optional#isPresent()" before accessing the value.(ÂŒ©õýÿÿÿÿ
-e
-java:S1128"JRemove this unused import 'ee.taltech.webpage.repository.ItemsRepository'.(ÌÄåêÿÿÿÿÿ
-M
-java:S3655"7Call "Optional#isPresent()" before accessing the value.(ÄÚö»
-R
-java:S36555"7Call "Optional#isPresent()" before accessing the value.(ÂŒ©õýÿÿÿÿ
-R
-java:S3655*"7Call "Optional#isPresent()" before accessing the value.(ØŒø ÿÿÿÿÿ
-Y
-java:S3655"7Call "Optional#isPresent()" before accessing the value.(ÂŒ©õýÿÿÿÿ8Áœ¸—Ó.
-M
-java:S3655!"7Call "Optional#isPresent()" before accessing the value.( Ç©ê
+java:S1128"5Remove this unused import 'java.awt.event.ItemEvent'.(¬§„Âÿÿÿÿÿ8ÀõúÈ×.
+l
+java:S1128"JRemove this unused import 'ee.taltech.webpage.repository.ItemsRepository'.(ÌÄåêÿÿÿÿÿ8ÀõúÈ×.
