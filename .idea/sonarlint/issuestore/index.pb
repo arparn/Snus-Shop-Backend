@@ -78,3 +78,9 @@ Fsrc/main/java/ee/taltech/webpage/a_theory/question6/vineyard/Wine.java,4\8\48d
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
 >
 .gitlab-ci.yml,5\8\587d266bb27a4dc3022bbed44dfa19849df3044c
+p
+@src/main/java/ee/taltech/webpage/b_theory/question11/Nr1isS.java,e\6\e63b16b712cfafc71942b2b2e71ecb6da60913a2
+z
+Jsrc/main/java/ee/taltech/webpage/b_theory/question11/FirstReadMeSOLID.java,4\b\4b3a7a37172ecb546283941ea490ba903d024b21
+p
+@src/main/java/ee/taltech/webpage/b_theory/question11/Nr2isO.java,1\5\15f73709c7a2dfcef56af4de38dcd588e64024a9
