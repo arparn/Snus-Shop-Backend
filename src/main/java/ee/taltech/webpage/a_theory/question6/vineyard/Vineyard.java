@@ -55,24 +55,21 @@ public class Vineyard {
     public List<Wine> wines = new ArrayList<>();
 
     @GetMapping
-    public List<Wine> getWines() {
+    public List<Wine> getWines(@RequestParam(required = false) Object query) {
+        if (query != null){
+            if (query instanceof Integer) {
+                return wines.stream().filter(wine -> wine.getYear().equals(query)).collect(Collectors.toList());
+            } else {
+                return wines.stream().filter(wine -> wine.getRegion().equals(query)).collect(Collectors.toList());
+            }
+        }
         return this.wines;
     }
 
     @GetMapping("{id}")
-    public String getWineDescription(@PathVariable Long id) {
+    public Wine getWine(@PathVariable Long id) {
         Optional<Wine> searchingWine = wines.stream().filter(wine -> wine.getId().equals(id)).findFirst();
-        return searchingWine.map(Wine::getDescription).orElse(null);
-    }
-
-    @GetMapping("{region}/region")
-    public List<Wine> filterByRegion(@PathVariable String region) {
-        return wines.stream().filter(wine -> wine.getRegion().equals(region)).collect(Collectors.toList());
-    }
-
-    @GetMapping("{year}/year")
-    public List<Wine> filterByYear(@PathVariable Integer year) {
-        return wines.stream().filter(wine -> wine.getYear().equals(year)).collect(Collectors.toList());
+        return searchingWine.orElse(null);
     }
 
     @GetMapping("{name}/name")
@@ -87,7 +84,7 @@ public class Vineyard {
         return searchedWine.orElse(null);
     }
 
-    @PutMapping("{id}")
+    @PatchMapping("{id}")
     public Wine changeWineName(@RequestBody Wine wine, @PathVariable Long id) {
         Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
         if (searchedWine.isPresent()) {
@@ -98,7 +95,7 @@ public class Vineyard {
         }
     }
 
-    @PutMapping("{id}/region")
+    @PatchMapping("{id}/region")
     public Wine changeWineRegion(@RequestBody Wine wine, @PathVariable Long id) {
         Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
         if (searchedWine.isPresent()) {
@@ -109,7 +106,7 @@ public class Vineyard {
         }
     }
 
-    @PutMapping("{id}/grape")
+    @PatchMapping("{id}/grape")
     public Wine changeWineGrape(@RequestBody Wine wine, @PathVariable Long id) {
         Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
         if (searchedWine.isPresent()) {
@@ -120,7 +117,7 @@ public class Vineyard {
         }
     }
 
-    @PutMapping("{id}/description")
+    @PatchMapping("{id}/description")
     public Wine changeWineDescription(@RequestBody Wine wine, @PathVariable Long id) {
         Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
         if (searchedWine.isPresent()) {
