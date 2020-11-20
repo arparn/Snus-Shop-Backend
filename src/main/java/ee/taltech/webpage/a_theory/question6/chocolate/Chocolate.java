@@ -74,18 +74,4 @@ public class Chocolate {
         cakes.add(cake);
         return cake;
     }
-
-    @DeleteMapping
-    private Optional<Cake> sellCake(Cake cake){
-        Optional<Cake> cakeToSell = (cakes.stream().filter(c -> c.getId().equals(cake.getId()) &&
-                c.getToppings().equals(cake.getToppings()) &&
-                c.getIngredients().equals(cake.getIngredients()) &&
-                c.getSize().equals(cake.getSize()) &&
-                c.getSweetness().equals(cake.getSweetness()))).findFirst();
-        if (cakeToSell.isPresent()){
-            cakes.remove(cakeToSell.get());
-            return cakeToSell;
-        }
-        return Optional.empty();
-    }
 }

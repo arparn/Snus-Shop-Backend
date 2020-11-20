@@ -74,6 +74,8 @@ x
 Hsrc/main/java/ee/taltech/webpage/a_theory/question6/sheep/SheepFarm.java,9\9\993a6ac9c44563f8100ec912d4523468705ccfa9
 v
 Fsrc/main/java/ee/taltech/webpage/a_theory/question6/vineyard/Wine.java,4\8\48d18eb7866661925d9c0a61a6c8ae95cca0b248
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 7
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
 >
