@@ -55,19 +55,16 @@ public class Chocolate {
     }
 
     @GetMapping()
-    private List<Cake> getCakes(){
+    private List<Cake> getCakes(@RequestParam(name = "ingredients", required = false) List<String> ingredients,
+                                @RequestParam(name = "toppings", required = false) List<String> toppings){
+        if (ingredients != null){
+            return cakes.stream().filter(c -> c.getIngredients().containsAll(ingredients)).collect(Collectors.toList());
+        } else if (toppings != null){
+            return cakes.stream().filter(c -> c.getToppings().containsAll(toppings)).collect(Collectors.toList());
+        }
         return cakes;
     }
 
-    @GetMapping("ingredients")
-    private List<Cake> getByIngredients(@RequestParam List<String> ingredients){
-        return cakes.stream().filter(c -> c.getIngredients().containsAll(ingredients)).collect(Collectors.toList());
-    }
-
-    @GetMapping("toppings")
-    private List<Cake> getByToppings(@RequestParam List<String> toppings){
-        return cakes.stream().filter(c -> c.getToppings().containsAll(toppings)).collect(Collectors.toList());
-    }
 
     @PostMapping
     private Cake addCake(@RequestBody Cake cake){
