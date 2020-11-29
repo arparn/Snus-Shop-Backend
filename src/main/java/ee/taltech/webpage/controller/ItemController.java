@@ -21,6 +21,11 @@ public class ItemController {
     private CommentService commentService;
 
     @GetMapping
+    public String testUpdates() {
+        return "Working!";
+    }
+
+    @GetMapping
     public List<Item> getItems(@RequestParam(required = false) String query) {
         if (query != null){
             return itemsService.getByNameAll(query);
