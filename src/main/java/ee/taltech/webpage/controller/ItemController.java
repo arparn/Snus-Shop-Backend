@@ -22,7 +22,7 @@ public class ItemController {
 
     @GetMapping("test")
     public String test() {
-        return "working!";
+        return "volk";
     }
 
     @GetMapping
