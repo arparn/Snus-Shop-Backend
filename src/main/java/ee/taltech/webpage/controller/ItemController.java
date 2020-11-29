@@ -20,6 +20,7 @@ public class ItemController {
     @Autowired
     private CommentService commentService;
 
+
     @GetMapping
     public List<Item> getItems(@RequestParam(required = false) String query) {
         if (query != null){
@@ -78,4 +79,3 @@ public class ItemController {
         return items;
     }
 }
-
