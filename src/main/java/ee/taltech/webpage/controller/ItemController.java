@@ -20,7 +20,10 @@ public class ItemController {
     @Autowired
     private CommentService commentService;
 
-
+    @GetMapping("wolf")
+    public String wolk(){
+        return "wolk";
+    }
     @GetMapping
     public List<Item> getItems(@RequestParam(required = false) String query) {
         if (query != null){
