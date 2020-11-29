@@ -20,8 +20,8 @@ public class ItemController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("test")
-    public String test() {
+    @GetMapping("testing")
+    public String testing() {
         return "volk";
     }
 
