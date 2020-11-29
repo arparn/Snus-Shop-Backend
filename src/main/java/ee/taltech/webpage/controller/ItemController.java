@@ -20,6 +20,11 @@ public class ItemController {
     @Autowired
     private CommentService commentService;
 
+    @GetMapping("test")
+    public String test() {
+        return "working!";
+    }
+
     @GetMapping
     public List<Item> getItems(@RequestParam(required = false) String query) {
         if (query != null){
