@@ -20,7 +20,7 @@ public class ItemController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping
+    @GetMapping("testing")
     public String testUpdates() {
         return "Working!";
     }
