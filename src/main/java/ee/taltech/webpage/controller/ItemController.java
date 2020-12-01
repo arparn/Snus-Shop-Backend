@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 
-@RequestMapping("items")
+@RequestMapping({"items", "items2"})
 @RestController
 public class ItemController {
 
