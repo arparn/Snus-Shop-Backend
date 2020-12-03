@@ -16,23 +16,19 @@ public class WishlistController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ItemsService itemsService;
-
     @GetMapping
     public List<Item> getWishlist() {
         return userService.getWishlist();
     }
 
     @PostMapping
-    public Item addToWishlist(@RequestBody Long id){
-        return userService.addToWishlist(itemsService.getItemById(id));
+    public Item addToWishlist(@RequestBody Long id) {
+        return userService.addToWishlist(id);
     }
 
     @DeleteMapping("/{id}/wish-list")
-    public Item removeFromWishList(@PathVariable Long id){
-        userService.removeFromWishlist(itemsService.getItemById(id));
-        return itemsService.getItemById(id);
+    public Item removeFromWishList(@PathVariable Long id) {
+        return userService.removeFromWishlist(id);
     }
 
     @DeleteMapping("wish-list")

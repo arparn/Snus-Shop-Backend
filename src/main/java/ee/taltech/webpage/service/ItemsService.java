@@ -22,7 +22,7 @@ public class ItemsService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public List<Item> getAll(){
+    public List<Item> getAll() {
         return itemsRepository.findAll();
     }
 
@@ -32,11 +32,11 @@ public class ItemsService {
     }
 
     public List<Item> getByNameAll(String name) {
-        return  itemsRepository.findAll().stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
+        return itemsRepository.findAll().stream().filter(x -> x.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
 
     public Item getByNameOne(String name) {
-        Optional<Item> item = itemsRepository.findAll().stream().filter(x->x.getName().toLowerCase().contains(name.toLowerCase())).findFirst();
+        Optional<Item> item = itemsRepository.findAll().stream().filter(x -> x.getName().toLowerCase().contains(name.toLowerCase())).findFirst();
         return item.orElse(null);
     }
 
@@ -56,11 +56,11 @@ public class ItemsService {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName)).collect(Collectors.toList());
     }
 
-    public List<Comment> getComments(Long itemLong){
+    public List<Comment> getComments(Long itemLong) {
         return getItemById(itemLong).getComments();
     }
 
-    public Double addGrade(Long id, Integer grade){
+    public Double addGrade(Long id, Integer grade) {
         Item item = getItemById(id);
         item.addGrade(grade);
         itemsRepository.save(item);
@@ -68,11 +68,11 @@ public class ItemsService {
     }
 
     // update
-    public void update(Item item){
+    public void update(Item item) {
         itemsRepository.save(item);
     }
 
-    public Comment addComment(Comment comment, Item item){
+    public Comment addComment(Comment comment, Item item) {
         item.addComment(comment);
         commentRepository.save(comment);
         update(item);

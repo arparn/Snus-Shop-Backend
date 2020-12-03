@@ -16,9 +16,6 @@ public class ShoppingCartController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ItemsService itemsService;
-
     @GetMapping
     public List<ItemCount> getShoppingCart() {
         return userService.getShoppingCart();
@@ -26,12 +23,12 @@ public class ShoppingCartController {
 
     @PostMapping
     public Item addShoppingCart(@RequestBody Long id){
-        return userService.addItemToShoppingCart(itemsService.getItemById(id));
+        return userService.addItemToShoppingCart(id);
     }
 
     @DeleteMapping("{id}")
     public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
-        userService.removeItemFromShoppingCart(itemsService.getItemById(id));
+        userService.removeItemFromShoppingCart(id);
         return userService.getShoppingCart();
     }
 

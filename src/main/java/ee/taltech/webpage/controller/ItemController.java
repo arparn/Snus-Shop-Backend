@@ -16,10 +16,9 @@ public class ItemController {
     @Autowired
     private ItemsService itemsService;
 
-
     @GetMapping
     public List<Item> getItems(@RequestParam(required = false) String query) {
-        if (query != null){
+        if (query != null) {
             return itemsService.getByNameAll(query);
         }
         return itemsService.getAll();
@@ -55,7 +54,8 @@ public class ItemController {
 
     @GetMapping("price-max")
     public List<Item> getItemByPriceMax() {
-        return itemsService.getByPriceMax();}
+        return itemsService.getByPriceMax();
+    }
 
     @GetMapping("price-min")
     public List<Item> getItemByPriceMin() {
