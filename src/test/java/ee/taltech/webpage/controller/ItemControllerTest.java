@@ -125,15 +125,15 @@ class ItemControllerTest {
 
     @Test
     void empty_cart_and_wishlist(){
-        ResponseEntity<List<ItemCount>> exchangeItemCount = testRestTemplate.exchange("/user/shopping-cart", HttpMethod.GET, null, LIST_OF_ITEM_COUNT);
-        ResponseEntity<List<Item>> exchangeWishlist = testRestTemplate.exchange("/user", HttpMethod.GET, null, LIST_OF_ITEMS);
+        ResponseEntity<List<ItemCount>> exchangeItemCount = testRestTemplate.exchange("/cart", HttpMethod.GET, null, LIST_OF_ITEM_COUNT);
+        ResponseEntity<List<Item>> exchangeWishlist = testRestTemplate.exchange("/wishlist", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchangeWishlist.getBody();
         assertNotNull(items);
         assertEquals(HttpStatus.OK, exchangeWishlist.getStatusCode());
         assertTrue(items.isEmpty());
         Item item0 = new Item();
         ItemCount itemCount0 = new ItemCount();
-        ResponseEntity<Item> addItem = testRestTemplate.exchange("/user/wishList", HttpMethod.POST, null, ITEM);
+        ResponseEntity<Item> addItem = testRestTemplate.exchange("/wishList", HttpMethod.POST, null, ITEM);
         List<ItemCount> itemCounts = exchangeItemCount.getBody();
         assertNotNull(itemCounts);
         assertEquals(HttpStatus.OK, exchangeItemCount.getStatusCode());
