@@ -19,6 +19,9 @@ public class ItemsService {
     @Autowired
     private ItemsRepository itemsRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     public List<Item> getAll(){
         return itemsRepository.findAll();
     }
@@ -64,9 +67,15 @@ public class ItemsService {
         return item.getRating();
     }
 
-
     // update
     public void update(Item item){
         itemsRepository.save(item);
+    }
+
+    public Comment addComment(Comment comment, Item item){
+        item.addComment(comment);
+        commentRepository.save(comment);
+        update(item);
+        return comment;
     }
 }

@@ -4,12 +4,9 @@ import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.repository.ItemCountRepository;
-import ee.taltech.webpage.repository.ItemsRepository;
 import ee.taltech.webpage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.awt.event.ItemEvent;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;

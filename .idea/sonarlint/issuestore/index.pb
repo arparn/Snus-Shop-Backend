@@ -86,3 +86,13 @@ z
 Jsrc/main/java/ee/taltech/webpage/b_theory/question11/FirstReadMeSOLID.java,4\b\4b3a7a37172ecb546283941ea490ba903d024b21
 p
 @src/main/java/ee/taltech/webpage/b_theory/question11/Nr2isO.java,1\5\15f73709c7a2dfcef56af4de38dcd588e64024a9
+k
+;src/main/java/ee/taltech/webpage/b_theory/question7/CI.java,1\3\139b5a8e423e9fa39779a3d44f200f01c8c6bfa1
+k
+;src/main/java/ee/taltech/webpage/b_theory/question8/CD.java,5\8\588aec554e00b6fff93e9c31d388b8b2f5aa3f55
+o
+?src/main/java/ee/taltech/webpage/b_theory/question9/Docker.java,b\2\b2ba9cd66f1326c934f2bafe13a32325469ef500
+o
+?src/main/java/ee/taltech/webpage/b_theory/question10/DBaaS.java,5\e\5e7662051ebd0a4792009e02ff45e744d4a37352
+p
+@src/main/java/ee/taltech/webpage/b_theory/question11/Nr5isD.java,2\3\23b5f118babd3ed854baf6fa8f3c4f27b375d391
