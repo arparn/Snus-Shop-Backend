@@ -1,15 +1,15 @@
 package ee.taltech.webpage.controller;
 
-import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
-@RequestMapping({"items", "items2"})
+@RequestMapping("items")
 @RestController
 public class ItemController {
 
@@ -17,17 +17,33 @@ public class ItemController {
     private ItemsService itemsService;
 
     @GetMapping
-    public List<Item> getItems(@RequestParam(required = false) String query) {
+    public List<Item> getItems(@RequestParam(value = "query", required = false) String query,
+                               @RequestParam(value = "filter", required = false) String filter,
+                               @RequestParam(value = "direction", defaultValue = "MAX") String direction) {
         if (query != null) {
             return itemsService.getByNameAll(query);
+        } else if (filter != null) {
+            List<Item> answer = new LinkedList<>();
+            switch (filter) {
+                case "rating":
+                    answer.addAll(itemsService.getByRatingMostPopular());
+                    break;
+                case "strength":
+                    answer.addAll(itemsService.getByStrengthMax());
+                    break;
+                case "price":
+                    answer.addAll(itemsService.getByPriceMax());
+                    break;
+                default:
+                    answer.addAll(itemsService.getAll());
+                    break;
+            }
+            if (direction.equals("MIN")) {
+                Collections.reverse(answer);
+            }
+            return answer;
         }
         return itemsService.getAll();
-    }
-
-    @PostMapping("/{id}/rating")
-    public Double addGrade(@RequestBody Integer rating,
-                           @PathVariable Long id) {
-        return itemsService.addGrade(id, rating);
     }
 
     @GetMapping("{id}")
@@ -35,32 +51,9 @@ public class ItemController {
         return itemsService.getItemById(id);
     }
 
-    @GetMapping("rating-max")
-    public List<Item> getItemByRatingMostPopular() {
-        return itemsService.getByRatingMostPopular();
-    }
-
-    @GetMapping("strength-max")
-    public List<Item> getItemByStrengthMax() {
-        return itemsService.getByStrengthMax();
-    }
-
-    @GetMapping("strength-min")
-    public List<Item> getItemByStrengthMin() {
-        List<Item> items = itemsService.getByStrengthMax();
-        Collections.reverse(items);
-        return items;
-    }
-
-    @GetMapping("price-max")
-    public List<Item> getItemByPriceMax() {
-        return itemsService.getByPriceMax();
-    }
-
-    @GetMapping("price-min")
-    public List<Item> getItemByPriceMin() {
-        List<Item> items = itemsService.getByPriceMax();
-        Collections.reverse(items);
-        return items;
+    @PostMapping("/{id}/rating")
+    public Double addGrade(@RequestBody Integer rating,
+                           @PathVariable Long id) {
+        return itemsService.addGrade(id, rating);
     }
 }

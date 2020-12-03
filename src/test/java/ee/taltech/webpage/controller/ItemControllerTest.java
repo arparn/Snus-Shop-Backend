@@ -44,7 +44,7 @@ class ItemControllerTest {
 
     @Test
     void test_min_strength(){
-        ResponseEntity<List<Item>> exchange = testRestTemplate.exchange("/items/strength-min", HttpMethod.GET, null, LIST_OF_ITEMS);
+        ResponseEntity<List<Item>> exchange = testRestTemplate.exchange("/items?filter=strength&direction=MIN", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchange.getBody();
         Item item = items.get(0);
         assertEquals("KNOX", item.getName());
@@ -113,7 +113,7 @@ class ItemControllerTest {
         item6.addGrade(4);
         item6.addGrade(4);
         item6.addGrade(5);
-        exchange = testRestTemplate.exchange("/items/rating-max", HttpMethod.GET, null, LIST_OF_ITEMS);
+        exchange = testRestTemplate.exchange("/items?filter=rating", HttpMethod.GET, null, LIST_OF_ITEMS);
         items = exchange.getBody();
         item0 = items.get(0);
         assertEquals(item0Id, item0.getId());
