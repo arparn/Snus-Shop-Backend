@@ -30,6 +30,6 @@ logging:
 
 users:
   userName: user
-  userPassword: user222
+  userPassword: user
   adminName: admin
   adminPassword: admin

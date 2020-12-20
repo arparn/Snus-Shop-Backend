@@ -11,10 +11,10 @@
 //@RestController
 //public class IndexController {
 //
-//    @GetMapping
-//    public String index() {
-//        return "API is up";
-//    }
+////    @GetMapping
+////    public String index() {
+////        return "API is up";
+////    }
 //
 //    @Secured(Roles.USER)
 //    @GetMapping("user")

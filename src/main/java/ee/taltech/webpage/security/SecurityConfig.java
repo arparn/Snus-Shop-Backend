@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -42,11 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/comment").permitAll()
 //                .antMatchers("/wishlist").permitAll()
 //                .antMatchers("/cart").hasRole("USER")
-                .antMatchers("/**").permitAll()
+                    .antMatchers("/**").permitAll()
 //                .antMatchers("/").permitAll()
 //                    .antMatchers("/user").hasRole("USER")
 //                    .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().fullyAuthenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .csrf().disable()
                 .headers().httpStrictTransportSecurity().disable();
