@@ -38,8 +38,6 @@ Bsrc/main/java/ee/taltech/webpage/repository/CommentRepository.java,f\e\febb2c9
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
 e
 5src/main/java/ee/taltech/webpage/model/ItemCount.java,f\4\f4dc98e47aaa37a27f0a0d532cd2dd194bcc93f8
-l
-<src/main/java/ee/taltech/webpage/service/CommentService.java,3\a\3ad5a00d43b0fc58a43735acd44ddd173810bdc4
 b
 2src/main/java/ee/taltech/webpage/LoadDatabase.java,0\e\0e79818ca8307aa78b0e4090116f89c264dbdc59
 s
@@ -64,8 +62,6 @@ t
 Dsrc/main/java/ee/taltech/webpage/a_theory/question6/sheep/Sheep.java,7\e\7e4cc8b6edee1cc6925eb2841562f5bda39d79fa
 z
 Jsrc/main/java/ee/taltech/webpage/a_theory/question6/vineyard/Vineyard.java,a\e\ae2f24787e484ab65baff9a65604787d25319720
-S
-#src/main/resources/application.yaml,8\b\8bf9a0c76cee89021a19081a2d70237db7e2fd8a
 t
 Dsrc/main/java/ee/taltech/webpage/a_theory/question1/Compilation.java,b\0\b0431181c1848717a92e2ab86fbc5a38affe8bf7
 |
