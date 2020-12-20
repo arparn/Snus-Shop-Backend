@@ -92,3 +92,13 @@ o
 ?src/main/java/ee/taltech/webpage/b_theory/question10/DBaaS.java,5\e\5e7662051ebd0a4792009e02ff45e744d4a37352
 p
 @src/main/java/ee/taltech/webpage/b_theory/question11/Nr5isD.java,2\3\23b5f118babd3ed854baf6fa8f3c4f27b375d391
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+s
+Csrc/main/java/ee/taltech/webpage/controller/WishlistController.java,3\e\3e9dbe28d2f0e94dd32f2d521506af882b4163f8
+p
+@src/main/java/ee/taltech/webpage/controller/GuestController.java,f\a\fa69d1a86833b2b9726b4c2a74b387b09c48ae01
+r
+Bsrc/main/java/ee/taltech/webpage/controller/CommentController.java,1\f\1fa13ae7dff8ff012b21a9df633609a01e51e9aa
+w
+Gsrc/main/java/ee/taltech/webpage/controller/ShoppingCartController.java,1\0\10aaf1d109de5331b91a53ca0608b4bc847b917e
