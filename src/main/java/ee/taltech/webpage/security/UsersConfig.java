@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "users")
 public class UsersConfig {
-
     private String userName;
     private String userPassword;
     private String adminName;

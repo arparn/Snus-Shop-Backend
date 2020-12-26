@@ -3,6 +3,7 @@ package ee.taltech.webpage.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,17 +34,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.headers().frameOptions().disable()
+                .and()
                 .httpBasic()
                 .and()
                 .authorizeRequests()
 //                     This is for url security
 //                .antMatchers("/dashboard").permitAll()
 //                .antMatchers("/items").permitAll()
-//                .antMatchers("/comment").permitAll()
-//                .antMatchers("/wishlist").permitAll()
+                .antMatchers("/h2/**").permitAll()
+                .antMatchers("/").permitAll()
+               /*.antMatchers(HttpMethod.GET,"/items/**").permitAll()*/
+                /* .antMatchers(HttpMethod.GET,"/user/**").hasRole("USER")*/
+                .antMatchers("/**").permitAll()
 //                .antMatchers("/cart").hasRole("USER")
-                    .antMatchers("/**").permitAll()
 //                .antMatchers("/").permitAll()
 //                    .antMatchers("/user").hasRole("USER")
 //                    .antMatchers("/admin").hasRole("ADMIN")

@@ -53,6 +53,7 @@ public class ItemController {
         return itemsService.getItemById(id);
     }
 
+    @Secured(Roles.USER)
     @PostMapping("/{id}/rating")
     public Double addGrade(@RequestBody Integer rating,
                            @PathVariable Long id) {

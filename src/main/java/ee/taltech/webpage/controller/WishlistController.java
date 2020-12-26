@@ -2,9 +2,11 @@ package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
+import ee.taltech.webpage.security.Roles;
 import ee.taltech.webpage.service.ItemsService;
 import ee.taltech.webpage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,15 +23,18 @@ public class WishlistController {
         return userService.getWishlist();
     }
 
+
     @PostMapping
     public Item addToWishlist(@RequestBody Long id) {
         return userService.addToWishlist(id);
     }
 
+
     @DeleteMapping("/{id}/wish-list")
     public Item removeFromWishList(@PathVariable Long id) {
         return userService.removeFromWishlist(id);
     }
+
 
     @DeleteMapping("wish-list")
     public List<Item> clearWishlist() {
