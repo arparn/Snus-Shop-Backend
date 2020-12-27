@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RequestMapping("cart")
 @RestController
 public class ShoppingCartController {
@@ -28,7 +29,6 @@ public class ShoppingCartController {
         return userService.addItemToShoppingCart(id);
     }
 
-    //@Secured(Roles.USER)
     @DeleteMapping("{id}")
     public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
         userService.removeItemFromShoppingCart(id);

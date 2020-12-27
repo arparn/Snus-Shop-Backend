@@ -5,23 +5,46 @@ import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
 import ee.taltech.webpage.repository.ItemCountRepository;
 import ee.taltech.webpage.repository.UserRepository;
+import ee.taltech.webpage.security.DbRole;
+import ee.taltech.webpage.service.users.dto.RegisterDto;
+import ee.taltech.webpage.service.users.exeptions.UserException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.apache.logging.log4j.util.Strings.isBlank;
+
 @Service
+@AllArgsConstructor
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private ItemsService itemsService;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private ItemCountRepository itemCountRepository;
+    private final ItemsService itemsService;
+
+    private final ItemCountRepository itemCountRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public void saveUser(RegisterDto registerDto) {
+        if (isBlank(registerDto.getUsername())) {
+            throw new UserException("missing username");
+        }
+        if (isBlank(registerDto.getPassword())) {
+            throw new UserException("missing password");
+        }
+        User user = new User();
+        user.setUsername(registerDto.getUsername());
+        user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+        user.setRole(DbRole.USER);
+        userRepository.save(user);
+        //email sent out to confirm it, not necessary fot iti0203
+    }
 
     public List<Item> getWishlist() {
         Optional<User> user = userRepository.findAll().stream().findFirst();

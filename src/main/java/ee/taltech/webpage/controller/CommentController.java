@@ -1,8 +1,10 @@
 package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Comment;
+import ee.taltech.webpage.security.Roles;
 import ee.taltech.webpage.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

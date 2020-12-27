@@ -1,6 +1,7 @@
 package ee.taltech.webpage.model;
 
 import ee.taltech.webpage.repository.ItemCountRepository;
+import ee.taltech.webpage.security.DbRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,11 +16,13 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class User {
-
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String username;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private DbRole role;
     @ManyToMany
     private List<Item> wishlist = new ArrayList<>();
     @ManyToMany
