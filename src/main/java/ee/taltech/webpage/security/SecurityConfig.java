@@ -51,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                this is for url based security
                 .antMatchers("/").permitAll()
+                .antMatchers("comment/**/comments").permitAll()
+                .antMatchers("comment/**").hasRole("USER")
                 .antMatchers("/**").permitAll()
                 /*
                 .antMatchers("/users/register").permitAll()
