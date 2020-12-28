@@ -59,4 +59,19 @@ public class ItemController {
                            @PathVariable Long id) {
         return itemsService.addGrade(id, rating);
     }
+
+    @Secured(Roles.ADMIN)
+    @PostMapping("/{id}/price")
+    public Double changePrice(@RequestBody Double price,
+                           @PathVariable Long id) {
+        return itemsService.changePrice(id, price);
+    }
+
+    @Secured(Roles.ADMIN)
+    @PostMapping("/{id}/description")
+    public String changeDescription(@RequestBody String description,
+                           @PathVariable Long id) {
+        return itemsService.changeDescription(id, description);
+    }
+
 }

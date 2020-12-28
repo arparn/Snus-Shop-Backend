@@ -35,13 +35,19 @@ public class Item {
         this.strength = strength;
     }
 
-    public Double addGrade(Integer grade){
+    public void addGrade(Integer grade){
         ratingsSum += Double.valueOf(grade);
         ratingsCount ++;
         rating = (double)  Math.round(ratingsSum / ratingsCount * 10) / 10;
-        return rating;
     }
 
+    public void changePrice(Double newPrice){
+        price = newPrice;
+    }
+
+    public void changeDescription(String newDescription){
+        description = newDescription;
+    }
 
     public void addComment(Comment comment) {
         comments.add(comment);

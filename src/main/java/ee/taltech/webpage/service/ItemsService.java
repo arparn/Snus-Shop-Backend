@@ -67,6 +67,20 @@ public class ItemsService {
         return item.getRating();
     }
 
+    public Double changePrice(Long id, Double price) {
+        Item item = getItemById(id);
+        item.changePrice(price);
+        itemsRepository.save(item);
+        return item.getRating();
+    }
+
+    public String changeDescription(Long id, String description) {
+        Item item = getItemById(id);
+        item.changeDescription(description);
+        itemsRepository.save(item);
+        return item.getDescription();
+    }
+
     // update
     public void update(Item item) {
         itemsRepository.save(item);

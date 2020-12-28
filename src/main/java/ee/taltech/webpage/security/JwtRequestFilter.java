@@ -59,7 +59,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
-    public String getUsername(String jwtToken) {
+    private String getUsername(String jwtToken) {
         try {
             return jwtTokenProvider.getUsernameFromToken(jwtToken);
         } catch (IllegalArgumentException e) {
@@ -72,7 +72,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         return null;
     }
 
-    public String getToken(HttpServletRequest request) {
+    private String getToken(HttpServletRequest request) {
         final String requestTokenHeader = request.getHeader(AUTHORIZATION);
         if (requestTokenHeader == null || !requestTokenHeader.startsWith(BEARER_)) {
             return null;

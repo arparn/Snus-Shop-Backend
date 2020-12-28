@@ -1,5 +1,6 @@
 package ee.taltech.webpage.service;
 
+import ee.taltech.webpage.exeption.UserNotFoundException;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
@@ -55,13 +56,19 @@ public class UserService {
 
     public List<Item> getWishlist(String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
+        if (userName == null){
+            return null;
+        }
         Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         return user.map(User::getWishlist).orElse(null);
     }
 
     public Item addToWishlist(Long id, String token) {
-
-        Optional<User> user = userRepository.findAllByUsername(jwtTokenProvider.getUsernameFromToken(token)).stream().findFirst();
+        String userName = jwtTokenProvider.getUsernameFromToken(token);
+        if (userName == null){
+            return null;
+        }
+        Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         Item item = null;
         if (user.isPresent()) {
             item = itemsService.getItemById(id);
@@ -72,15 +79,21 @@ public class UserService {
     }
 
     public void clearWishlist(String token) {
-        Optional<User> user = userRepository.findAll().stream().findFirst();
-        if (user.isPresent()) {
-            user.get().clearWishlist();
-            userRepository.save(user.get());
+        String userName = jwtTokenProvider.getUsernameFromToken(token);
+        if (userName != null){
+            Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
+            if (user.isPresent()) {
+                user.get().clearWishlist();
+                userRepository.save(user.get());
+            }
         }
     }
 
     public List<ItemCount> getShoppingCart(String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
+        if (userName == null){
+            return null;
+        }
         Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         if (user.isPresent()) {
             return user.get().getShoppingCart();
@@ -89,7 +102,11 @@ public class UserService {
     }
 
     public Item addItemToShoppingCart(Long id, String token) {
-        Optional<User> user = userRepository.findAllByUsername(jwtTokenProvider.getUsernameFromToken(token)).stream().findFirst();
+        String userName = jwtTokenProvider.getUsernameFromToken(token);
+        if (userName == null){
+            return null;
+        }
+        Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         Item item = null;
         if (user.isPresent()) {
             item = itemsService.getItemById(id);
@@ -101,12 +118,17 @@ public class UserService {
 
     public void removeItemFromShoppingCart(Long id, String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
-        Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
-        user.ifPresent(value -> value.removeItemFromShoppingCart(itemsService.getItemById(id), itemCountRepository));
+        if (userName != null){
+            Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
+            user.ifPresent(value -> value.removeItemFromShoppingCart(itemsService.getItemById(id), itemCountRepository));
+        }
     }
 
     public Item removeFromWishlist(Long id, String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
+        if (userName == null){
+            return null;
+        }
         Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         Item item = null;
         if (user.isPresent()) {
@@ -119,10 +141,13 @@ public class UserService {
 
     public void clearShoppingCart(String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
-        Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
-        if (user.isPresent()) {
-            user.get().clearShoppingCart();
-            userRepository.save(user.get());
+        if (userName != null){
+            Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
+            if (user.isPresent()) {
+                user.get().clearShoppingCart();
+                userRepository.save(user.get());
+            }
         }
+
     }
 }

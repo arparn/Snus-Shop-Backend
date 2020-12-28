@@ -1,6 +1,7 @@
 package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Comment;
+import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.security.Roles;
 import ee.taltech.webpage.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,4 @@ public class CommentController {
                               @PathVariable Long id) {
         return itemsService.addComment(comment, itemsService.getItemById(id));
     }
-
 }
