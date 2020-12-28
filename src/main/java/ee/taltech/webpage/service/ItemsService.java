@@ -6,6 +6,7 @@ import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.repository.CommentRepository;
 import ee.taltech.webpage.repository.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -68,6 +69,12 @@ public class ItemsService {
     }
 
     public Double changePrice(Long id, Double price) {
+        System.out.println("HUUUUUUUUUUUUUUUUUUUUI");
+        System.out.println("HUUUUUUUUUUUUUUUUUUUUI");
+        System.out.println("HUUUUUUUUUUUUUUUUUUUUI");
+        System.out.println("HUUUUUUUUUUUUUUUUUUUUI");
+        System.out.println("HUUUUUUUUUUUUUUUUUUUUI");
+        System.out.println("HUUUUUUUUUUUUUUUUUUUUI");
         Item item = getItemById(id);
         item.changePrice(price);
         itemsRepository.save(item);

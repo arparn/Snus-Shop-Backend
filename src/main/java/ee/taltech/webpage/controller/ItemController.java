@@ -53,21 +53,20 @@ public class ItemController {
         return itemsService.getItemById(id);
     }
 
-    @Secured(Roles.USER)
+
     @PostMapping("/{id}/rating")
     public Double addGrade(@RequestBody Integer rating,
                            @PathVariable Long id) {
         return itemsService.addGrade(id, rating);
     }
 
-    @Secured(Roles.ADMIN)
+
     @PostMapping("/{id}/price")
-    public Double changePrice(@RequestBody Double price,
+    public Double changePrice(@RequestBody Integer price,
                            @PathVariable Long id) {
-        return itemsService.changePrice(id, price);
+        return itemsService.changePrice(id, (double) price);
     }
 
-    @Secured(Roles.ADMIN)
     @PostMapping("/{id}/description")
     public String changeDescription(@RequestBody String description,
                            @PathVariable Long id) {

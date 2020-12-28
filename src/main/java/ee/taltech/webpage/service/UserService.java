@@ -50,6 +50,7 @@ public class UserService {
         user.setUsername(registerDto.getUsername());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         user.setRole(DbRole.USER);
+
         userRepository.save(user);
         //email sent out to confirm it, not necessary fot iti0203
     }

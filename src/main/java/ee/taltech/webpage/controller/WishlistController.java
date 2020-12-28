@@ -2,15 +2,10 @@ package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Info;
 import ee.taltech.webpage.model.Item;
-import ee.taltech.webpage.security.JwtRequestFilter;
-import ee.taltech.webpage.security.JwtTokenProvider;
 import ee.taltech.webpage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.net.http.HttpRequest;
 import java.util.List;
 
 @RequestMapping("wishlist")

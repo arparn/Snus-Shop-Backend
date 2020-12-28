@@ -51,16 +51,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                this is for url based security
                 .antMatchers("/").permitAll()
-                .antMatchers("comment/**/comments").permitAll()
-                .antMatchers("comment/**").hasRole("USER")
                 .antMatchers("/**").permitAll()
+                //.antMatchers("comment/**/comments").permitAll()
+                //.antMatchers("comment/**").hasRole("USER")
+                //.antMatchers("comment/**").hasRole("ADMIN")
                 /*
+
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/users/login").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/heroes/**").permitAll()*/
 //                .antMatchers("/user").hasRole("USER")
 //                .antMatchers("/admin").hasRole("ADMIN")
+
                 .anyRequest().fullyAuthenticated()
         ; //if this is not disabled your https frontend must have https (not http) on backend;
     }

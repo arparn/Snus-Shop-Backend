@@ -31,6 +31,7 @@ public class ItemApplicationUnit implements CommandLineRunner {
         user.setUsername(usersConfig.getAdminName());
         user.setPassword(new BCryptPasswordEncoder().encode(usersConfig.getAdminPassword()));
         user.setRole(DbRole.ADMIN);
+        userRepository.save(user);
     }
 
 }
