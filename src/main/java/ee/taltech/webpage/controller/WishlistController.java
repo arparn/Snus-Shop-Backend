@@ -1,5 +1,6 @@
 package ee.taltech.webpage.controller;
 
+import ee.taltech.webpage.model.Info;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +15,26 @@ public class WishlistController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public List<Item> getWishlist() {
-        return userService.getWishlist();
+    @PostMapping("/list")
+    public List<Item> getWishlist(@RequestBody String token) {
+        return userService.getWishlist(token);
     }
 
-
     @PostMapping
-    public Item addToWishlist(@RequestBody Long id) {
-        return userService.addToWishlist(id);
+    public Item addToWishlist(@RequestBody Info info) {
+        return userService.addToWishlist(info.getId(), info.getToken());
     }
 
 
     @DeleteMapping("/{id}/wish-list")
-    public Item removeFromWishList(@PathVariable Long id) {
-        return userService.removeFromWishlist(id);
+    public Item removeFromWishList(@RequestBody Info info) {
+        return userService.removeFromWishlist(info.getId(), info.getToken());
     }
 
-
-    @DeleteMapping("wish-list")
-    public List<Item> clearWishlist() {
-        userService.clearWishlist();
-        return userService.getWishlist();
-    }
+//
+//    @DeleteMapping("wish-list")
+//    public List<Item> clearWishlist(String token) {
+//        userService.clearWishlist(token);
+//        return userService.getWishlist(token);
+//    }
 }

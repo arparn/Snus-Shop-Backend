@@ -1,5 +1,6 @@
 package ee.taltech.webpage.controller;
 
+import ee.taltech.webpage.model.Info;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.security.Roles;
@@ -19,25 +20,25 @@ public class ShoppingCartController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public List<ItemCount> getShoppingCart() {
-        return userService.getShoppingCart();
+    @PostMapping("/purchase")
+    public List<ItemCount> getShoppingCart(@RequestBody String token) {
+        return userService.getShoppingCart(token);
     }
 
     @PostMapping
-    public Item addShoppingCart(@RequestBody Long id){
-        return userService.addItemToShoppingCart(id);
+    public Item addShoppingCart(@RequestBody Info info){
+        return userService.addItemToShoppingCart(info.getId(), info.getToken());
     }
 
-    @DeleteMapping("{id}")
-    public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
-        userService.removeItemFromShoppingCart(id);
-        return userService.getShoppingCart();
-    }
+//    @DeleteMapping("{id}")
+//    public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
+//        userService.removeItemFromShoppingCart(id);
+//        return userService.getShoppingCart();
+//    }
 
-    @DeleteMapping("shopping-cart")
-    public List<ItemCount> clearShoppingCart() {
-        userService.clearShoppingCart();
-        return userService.getShoppingCart();
-    }
+//    @DeleteMapping("shopping-cart")
+//    public List<ItemCount> clearShoppingCart() {
+//        userService.clearShoppingCart();
+//        return userService.getShoppingCart();
+//    }
 }
