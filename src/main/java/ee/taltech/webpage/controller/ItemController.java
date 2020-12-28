@@ -62,15 +62,16 @@ public class ItemController {
 
 
     @PostMapping("/{id}/price")
-    public Double changePrice(@RequestBody Integer price,
-                           @PathVariable Long id) {
-        return itemsService.changePrice(id, (double) price);
+    public String changePrice(@RequestBody String price,
+                              @PathVariable Long id) {
+        double pr = Double.parseDouble(price);
+        return itemsService.changePrice(id, pr);
     }
+
 
     @PostMapping("/{id}/description")
     public String changeDescription(@RequestBody String description,
-                           @PathVariable Long id) {
+                                    @PathVariable Long id) {
         return itemsService.changeDescription(id, description);
     }
-
 }

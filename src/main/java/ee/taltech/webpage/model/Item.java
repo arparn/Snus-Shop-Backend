@@ -53,4 +53,8 @@ public class Item {
         comments.add(comment);
     }
 
+    public void deleteComment(Comment comment) {
+        comments.remove(comment);
+    }
+
 }
