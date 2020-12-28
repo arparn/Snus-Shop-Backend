@@ -20,25 +20,25 @@ public class ShoppingCartController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/purchase")
-    public List<ItemCount> getShoppingCart(@RequestBody String token) {
-        return userService.getShoppingCart(token);
+    @GetMapping
+    public List<ItemCount> getShoppingCart(@RequestHeader (name="Authorization") String token) {
+        return userService.getShoppingCart(token.substring(7));
     }
 
     @PostMapping
-    public Item addShoppingCart(@RequestBody Info info){
-        return userService.addItemToShoppingCart(info.getId(), info.getToken());
+    public Item addShoppingCart(@RequestBody Long id, @RequestHeader (name="Authorization") String token){
+        return userService.addItemToShoppingCart(id, token.substring(7));
     }
 
-//    @DeleteMapping("{id}")
-//    public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
-//        userService.removeItemFromShoppingCart(id);
-//        return userService.getShoppingCart();
-//    }
+    @DeleteMapping("{id}")
+    public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id, @RequestHeader (name="Authorization") String token){
+        userService.removeItemFromShoppingCart(id, token.substring(7));
+        return userService.getShoppingCart(token.substring(7));
+    }
 
-//    @DeleteMapping("shopping-cart")
-//    public List<ItemCount> clearShoppingCart() {
-//        userService.clearShoppingCart();
-//        return userService.getShoppingCart();
-//    }
+    @DeleteMapping("shopping-cart")
+    public List<ItemCount> clearShoppingCart(@RequestHeader (name="Authorization") String token) {
+        userService.clearShoppingCart(token.substring(7));
+        return userService.getShoppingCart(token.substring(7));
+    }
 }

@@ -99,13 +99,15 @@ public class UserService {
         return item;
     }
 
-    public void removeItemFromShoppingCart(Long id) {
-        Optional<User> user = userRepository.findAll().stream().findFirst();
+    public void removeItemFromShoppingCart(Long id, String token) {
+        String userName = jwtTokenProvider.getUsernameFromToken(token);
+        Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         user.ifPresent(value -> value.removeItemFromShoppingCart(itemsService.getItemById(id), itemCountRepository));
     }
 
     public Item removeFromWishlist(Long id, String token) {
-        Optional<User> user = userRepository.findAll().stream().findFirst();
+        String userName = jwtTokenProvider.getUsernameFromToken(token);
+        Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         Item item = null;
         if (user.isPresent()) {
             item = itemsService.getItemById(id);
@@ -115,8 +117,9 @@ public class UserService {
         return item;
     }
 
-    public void clearShoppingCart() {
-        Optional<User> user = userRepository.findAll().stream().findFirst();
+    public void clearShoppingCart(String token) {
+        String userName = jwtTokenProvider.getUsernameFromToken(token);
+        Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
         if (user.isPresent()) {
             user.get().clearShoppingCart();
             userRepository.save(user.get());

@@ -22,18 +22,18 @@ public class WishlistController {
 
     @GetMapping
     public List<Item> getWishlist(@RequestHeader (name="Authorization") String token) {
-        return userService.getWishlist(token);
+        return userService.getWishlist(token.substring(7));
     }
 
     @PostMapping
-    public Item addToWishlist(@RequestBody Info info) {
-        return userService.addToWishlist(info.getId(), info.getToken());
+    public Item addToWishlist(@RequestBody Long id, @RequestHeader (name="Authorization") String token) {
+        return userService.addToWishlist(id, token.substring(7));
     }
 
 
-    @DeleteMapping("/{id}/wish-list")
-    public Item removeFromWishList(@RequestBody Info info) {
-        return userService.removeFromWishlist(info.getId(), info.getToken());
+    @DeleteMapping("{id}")
+    public Item removeFromWishList(@PathVariable Long id, @RequestHeader (name="Authorization") String token) {
+        return userService.removeFromWishlist(id, token.substring(7));
     }
 
 //
