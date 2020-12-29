@@ -54,8 +54,8 @@ public class Vineyard {
 
     public List<Wine> wines = new ArrayList<>();
 
-    @GetMapping
-    public List<Wine> getWines(@RequestParam(required = false) Object query) {
+    @GetMapping("/wines")
+    public List<Wine> getWines(@RequestParam(value = "query", required = false) Object query) {
         if (query != null){
             if (query instanceof Integer) {
                 return wines.stream().filter(wine -> wine.getYear().equals(query)).collect(Collectors.toList());
@@ -66,62 +66,39 @@ public class Vineyard {
         return this.wines;
     }
 
-    @GetMapping("{id}")
-    public Wine getWine(@PathVariable Long id) {
-        Optional<Wine> searchingWine = wines.stream().filter(wine -> wine.getId().equals(id)).findFirst();
-        return searchingWine.orElse(null);
-    }
-
-    @GetMapping("{name}/name")
-    public Wine getByName(@PathVariable String name) {
-        Optional<Wine> searchedWine = wines.stream().filter(wine -> wine.getName().equals(name)).findFirst();
-        return searchedWine.orElse(null);
-    }
-
-    @GetMapping("{grape}/grape")
-    public Wine getByGrape(@PathVariable String grape) {
-        Optional<Wine> searchedWine = wines.stream().filter(wine -> wine.getGrape().equals(grape)).findFirst();
-        return searchedWine.orElse(null);
-    }
-
-    @PatchMapping("{id}")
-    public Wine changeWineName(@RequestBody Wine wine, @PathVariable Long id) {
-        Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
-        if (searchedWine.isPresent()) {
-            searchedWine.get().setName(wine.getName());
-            return searchedWine.get();
-        } else {
-            return null;
+    @GetMapping
+    public Wine getWine(@RequestParam(value = "id", required = false) Long id,
+                        @RequestParam(value = "name", required = false) String name,
+                        @RequestParam(value = "grape", required = false) String grape) {
+        if (id != null) {
+            Optional<Wine> searchingWine = wines.stream().filter(wine -> wine.getId().equals(id)).findFirst();
+            return searchingWine.orElse(null);
+        } else if (name != null) {
+            Optional<Wine> searchedWine = wines.stream().filter(wine -> wine.getName().equals(name)).findFirst();
+            return searchedWine.orElse(null);
+        } else if (grape != null) {
+            Optional<Wine> searchedWine = wines.stream().filter(wine -> wine.getGrape().equals(grape)).findFirst();
+            return searchedWine.orElse(null);
         }
+        return null;
     }
 
-    @PatchMapping("{id}/region")
-    public Wine changeWineRegion(@RequestBody Wine wine, @PathVariable Long id) {
+    @PatchMapping
+    public Wine changeWine(@RequestParam(value = "change") String change,
+                           @RequestParam(value = "query") String query,
+                           @RequestParam(value = "id") long id) {
         Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
-        if (searchedWine.isPresent()) {
-            searchedWine.get().setRegion(wine.getRegion());
+        if (change.equals("name") && searchedWine.isPresent()) {
+            searchedWine.get().setName(query);
             return searchedWine.get();
-        } else {
-            return null;
-        }
-    }
-
-    @PatchMapping("{id}/grape")
-    public Wine changeWineGrape(@RequestBody Wine wine, @PathVariable Long id) {
-        Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
-        if (searchedWine.isPresent()) {
-            searchedWine.get().setGrape(wine.getGrape());
+        } else if (change.equals("region") && searchedWine.isPresent()) {
+            searchedWine.get().setRegion(query);
             return searchedWine.get();
-        } else {
-            return null;
-        }
-    }
-
-    @PatchMapping("{id}/description")
-    public Wine changeWineDescription(@RequestBody Wine wine, @PathVariable Long id) {
-        Optional<Wine> searchedWine = wines.stream().filter(wine1 -> wine1.getId().equals(id)).findFirst();
-        if (searchedWine.isPresent()) {
-            searchedWine.get().setDescription(wine.getDescription());
+        } else if (change.equals("grape") && searchedWine.isPresent()) {
+            searchedWine.get().setGrape(query);
+            return searchedWine.get();
+        } else if (change.equals("description") && searchedWine.isPresent()) {
+            searchedWine.get().setDescription(query);
             return searchedWine.get();
         } else {
             return null;
