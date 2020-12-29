@@ -6,6 +6,7 @@ import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.security.JwtTokenProvider;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -26,7 +27,7 @@ class ItemControllerTest extends RestTemplateTests {
         assertEquals(HttpStatus.OK, exchange.getStatusCode());
         assertFalse(items.isEmpty());
         Item item = items.get(0);
-        assertEquals("Odens", item.getName());
+        assertEquals("Killa Cold Mint", item.getName());
     }
 
     @Test
@@ -34,17 +35,17 @@ class ItemControllerTest extends RestTemplateTests {
         ResponseEntity<List<Item>> exchange = template().exchange("/items/?filter=strength&direction=MIN", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchange.getBody();
         Item item = items.get(0);
-        assertEquals("KNOX", item.getName());
+        assertEquals("Fox Black", item.getName());
         assertEquals(14, items.size());
         item = items.get(items.size() - 1);
-        assertEquals("Odens", item.getName());
+        assertEquals("Killa Cold Mint", item.getName());
         exchange = template().exchange("/items/?filter=strength", HttpMethod.GET, null, LIST_OF_ITEMS);
         items = exchange.getBody();
         item = items.get(0);
-        assertEquals("Odens", item.getName());
+        assertEquals("Killa Cold Mint", item.getName());
         assertEquals(14, items.size());
         item = items.get(items.size() - 1);
-        assertEquals("KNOX", item.getName());
+        assertEquals("Fox Black", item.getName());
     }
 
     @Test
@@ -77,7 +78,7 @@ class ItemControllerTest extends RestTemplateTests {
         ResponseEntity<List<Item>> exchange = template().exchange("/items/?filter=price&direction=MIN", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchange.getBody();
         Item item = items.get(0);
-        assertEquals("Skruf", item.getName());
+        assertEquals("Fox Red", item.getName());
         assertEquals(14, items.size());
     }
 
@@ -116,9 +117,9 @@ class ItemControllerTest extends RestTemplateTests {
         ResponseEntity<List<Item>> exchange = templateWithAdmin().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchange.getBody();
         Item item = items.get(0);
-        item.changePrice(3.3);
+        templateWithAdmin().exchange("/items/1/price", HttpMethod.POST, entity(5.0, "admin"), ITEM_ID);//TODO
         Double price = item.getPrice();
-        Item newItem = new Item();
+        Item newItem = items.get(1);
         ItemCount itemCount = new ItemCount();
         ItemCount itemCount7 = new ItemCount(item, 7);
         assertNull(itemCount.getId());
@@ -131,17 +132,14 @@ class ItemControllerTest extends RestTemplateTests {
         assertEquals(itemCount.getItem(), itemCount7.getItem());
         itemCount.setQuantity(7);
         assertEquals(itemCount.getQuantity(), itemCount7.getQuantity());
-        newItem.changeDescription("new taste of freedom");
-        newItem.changePrice(3.3);
+        ResponseEntity<String> changed2 = templateWithAdmin().exchange("/items/2/description", HttpMethod.POST, entity("new taste of freedom", "admin"), String.class);
+        templateWithAdmin().exchange("/items/2/price", HttpMethod.POST, entity(5.0, "admin"), ITEM_ID);
         assertEquals(price, newItem.getPrice());
-        assertEquals("new taste of freedom", newItem.getDescription());
+        assertEquals("new taste of freedom", changed2.getBody());
     }
 
     private <T> HttpEntity<T> entity(T param, String name) {
-
         HttpHeaders headers = authorizationHeader(name);
         return new HttpEntity<>(param, headers);
     }
-
 }
-

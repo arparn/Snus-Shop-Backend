@@ -33,5 +33,3 @@ public class CommentController {
         return itemsService.deleteComment(itemsService.getItemById(id), commId);
     }
 }
-//*ngIf="user !== null && (user.role === 'USER' || user.role === 'ADMIN')"
-//*ngIf="user !== null && user.role === 'ADMIN'"

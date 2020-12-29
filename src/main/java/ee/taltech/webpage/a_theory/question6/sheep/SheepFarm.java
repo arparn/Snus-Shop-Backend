@@ -58,10 +58,11 @@ public class SheepFarm {
     }
 
     @PostMapping
-    private void addSheep(Sheep sheep) {
+    private Sheep addSheep(Sheep sheep) {
         index++;
         sheep.setId((long) index);
         dataBase.add(sheep);
+        return getSheepFromDataBase(sheep.getId());
     }
 
     @DeleteMapping("{id}")

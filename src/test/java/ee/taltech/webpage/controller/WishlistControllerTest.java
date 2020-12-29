@@ -4,11 +4,10 @@ import ee.taltech.webpage.common.RestTemplateTests;
 import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
+import ee.taltech.webpage.service.users.dto.RegisterDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
 import java.util.List;
 
@@ -18,12 +17,11 @@ public class WishlistControllerTest extends RestTemplateTests {
 
     @Test
     void wishlist() {
-//        ResponseEntity<List<Item>> exchangeWishlist = templateWithUser().exchange("/wishlist", HttpMethod.GET, null, LIST_OF_ITEMS);
-//        List<Item> items = exchangeWishlist.getBody();
-//        assertNotNull(items);
-//        assertEquals(HttpStatus.OK, exchangeWishlist.getStatusCode());
-//        assertTrue(items.isEmpty());
-//        ResponseEntity<Item> addItem = templateWithUser().exchange("/user/wishList", HttpMethod.POST, null, ITEM);
 
+    }
+
+    private <T> HttpEntity<T> entity(T param, String name) {
+        HttpHeaders headers = authorizationHeader(name);
+        return new HttpEntity<>(param, headers);
     }
 }
