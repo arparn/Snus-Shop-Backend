@@ -31,20 +31,20 @@ class LoadDatabase {
     CommandLineRunner initDatabase(ItemsRepository repository, UserRepository userRepository) {
         return args -> {
             List<Item> items = List.of(
-                    new Item("Odens", "/assets/images/odens.png", 5.60, "Snus", 5),
-                    new Item("Thunder", "/assets/images/thunder.png", 7.20, "Snus", 4),
-                    new Item("Siberia", "/assets/images/siberia.png", 4.80, "Snus", 5),
-                    new Item("KNOX", "/assets/images/knox.png", 6.00, "Snus", 3),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.39, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.99, "Snus", 4),
-                    new Item("Skruf", "/assets/images/skruf.png", 4.00, "Snus", 4)
+                    new Item("Killa Cold Mint", "/assets/images/KillaCold.png", 5.50, "Snus", 5),
+                    new Item("Killa BlueBerry", "/assets/images/Killa_Blueberry.png", 5.50, "Snus", 5),
+                    new Item("Killa Melon", "/assets/images/killaMellon.png", 5.50, "Snus", 4),
+                    new Item("Fox Black", "/assets/images/foxBlack.png", 4.99, "Snus", 2),
+                    new Item("Fox Blue", "/assets/images/foxBlue.png", 4.99, "Snus", 3),
+                    new Item("Fox Red", "/assets/images/FoxRed.png", 4.99, "Snus", 4),
+                    new Item("Paz red", "/assets/images/pazRed.png", 5.99, "Snus", 5),
+                    new Item("Paz Blue", "/assets/images/pazBlue.png", 5.99, "Snus", 3),
+                    new Item("Ace Citrus", "/assets/images/acecitrus.png", 5.99, "Snus", 3),
+                    new Item("Ace Coolmint", "/assets/images/acecoolmint.png", 5.99, "Snus", 3),
+                    new Item("Ace Eucalyptus", "/assets/images/aceEucalyptus.png", 5.99, "Snus", 3),
+                    new Item("Dissident", "/assets/images/dissident.png", 6.99, "Snus", 4),
+                    new Item("Vello Freeze", "/assets/images/VelloFreeze.png", 6.99, "Snus", 3),
+                    new Item("Skruf", "/assets/images/skruf.png", 6.99, "Snus", 4)
             );
 //            User user = new User();
 //

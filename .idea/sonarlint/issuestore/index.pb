@@ -94,8 +94,6 @@ p
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 s
 Csrc/main/java/ee/taltech/webpage/controller/WishlistController.java,3\e\3e9dbe28d2f0e94dd32f2d521506af882b4163f8
-p
-@src/main/java/ee/taltech/webpage/controller/GuestController.java,f\a\fa69d1a86833b2b9726b4c2a74b387b09c48ae01
 r
 Bsrc/main/java/ee/taltech/webpage/controller/CommentController.java,1\f\1fa13ae7dff8ff012b21a9df633609a01e51e9aa
 w
@@ -126,13 +124,9 @@ d
 Ksrc/main/java/ee/taltech/webpage/security/RestAuthenticationEntryPoint.java,3\e\3e7f3e3fe5e38cf512a24028392add1bec628d31
 m
 =src/main/java/ee/taltech/webpage/security/SecurityConfig.java,3\2\3283aa75e8e77cb350af633bc45c7bca7c91e90b
-S
-#src/main/resources/application.yaml,8\b\8bf9a0c76cee89021a19081a2d70237db7e2fd8a
 o
 ?src/main/java/ee/taltech/webpage/security/JwtRequestFilter.java,e\b\ebd86752fbecd15bfb2d61175322cd2d9d9878a3
 t
 Dsrc/main/java/ee/taltech/webpage/exeption/UserNotFoundException.java,9\d\9d75dc9e827bb624f0feb4f1917d619e7e7ef8c1
-p
-@src/main/java/ee/taltech/webpage/controller/IndexController.java,8\7\871e3c968993627f8c27fe8fd4dd4c1c2efc6460
 e
 5src/main/java/ee/taltech/webpage/security/DbRole.java,a\a\aa7b1a13e72f7cef5e83e0ba478455dc71a6c76e

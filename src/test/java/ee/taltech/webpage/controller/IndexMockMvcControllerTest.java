@@ -1,81 +1,88 @@
-/*
 package ee.taltech.webpage.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.taltech.webpage.service.users.dto.LoginDto;
+import ee.taltech.webpage.service.users.dto.RegisterDto;
+import ee.taltech.webpage.service.users.exeptions.UserException;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 public class IndexMockMvcControllerTest {
-    public static final String INDEX = "/";
-    public static final String USER = "/user";
-    public static final String ADMIN = "/admin";
-    public static final String INDEX_CONTENT = "API is up";
-    public static final String USER_CONTENT = "USER url";
-    public static final String ADMIN_CONTENT = "ADMIN url";
     @Autowired
     private MockMvc mvc;
 
     @Test
+    @Order(1)
     //    @DisplayName("name of the test")
-    public void whenRequestIndex_thenReceiveGreeting() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(INDEX).accept(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo(INDEX_CONTENT)));
+    public void register() throws Exception {
+
+        RegisterDto registerDto = new RegisterDto();
+        registerDto.setUsername("user");
+        registerDto.setPassword("user");
+        mvc.perform(MockMvcRequestBuilders.post("/user/reg").contentType(APPLICATION_JSON).content(asJsonString(registerDto)).accept(APPLICATION_JSON))
+                .andExpect(status().isCreated());
+
     }
 
     @Test
-    public void user_url_for_guest_is_unauthorized() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(USER).accept(APPLICATION_JSON))
-                .andExpect(status().isUnauthorized());
+    @Order(2)
+    public void wrongRegister() throws Exception {
+        //test same user exist
+        RegisterDto registerDto2 = new RegisterDto();
+        registerDto2.setUsername("user");
+        registerDto2.setPassword("user");
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/user/reg").contentType(APPLICATION_JSON).content(asJsonString(registerDto2)))
+                .andExpect(status().is4xxClientError())
+                .andReturn();
+
+        //test no username
+        registerDto2.setUsername("");
+        registerDto2.setPassword("anotherUser");
+        result = mvc.perform(MockMvcRequestBuilders.post("/user/reg").contentType(APPLICATION_JSON).content(asJsonString(registerDto2)))
+                .andExpect(status().is4xxClientError())
+                .andReturn();
+
+        //test no password
+        registerDto2.setUsername("anotherUser");
+        registerDto2.setPassword("");
+        result = mvc.perform(MockMvcRequestBuilders.post("/user/reg").contentType(APPLICATION_JSON).content(asJsonString(registerDto2)))
+                .andExpect(status().is4xxClientError())
+                .andReturn();
+
+        //test no dto
+        result = mvc.perform(MockMvcRequestBuilders.post("/user/reg").contentType(APPLICATION_JSON).content(asJsonString(new LoginDto())))
+                .andExpect(status().is4xxClientError())
+                .andReturn();
     }
 
     @Test
-    @WithMockUser(username = "test", password = "test", roles = "USER")
-    public void user_url_is_for_user() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(USER).accept(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo(USER_CONTENT)));
+    @Order(3)
+    public void login() throws Exception {
+        LoginDto loginDto = new LoginDto();
+        loginDto.setUsername("user");
+        loginDto.setPassword("user");
+        mvc.perform(MockMvcRequestBuilders.post("/user/log").contentType(APPLICATION_JSON).content(asJsonString(loginDto)).accept(APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
-    @Test
-    @WithMockUser(username = "test", password = "test", roles = {"USER", "ADMIN"})
-    public void user_url_is_for_admin() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(USER).accept(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo(USER_CONTENT)));
-    }
 
-    @Test
-    public void admin_url_is_unauthorized_for_guest() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ADMIN).accept(APPLICATION_JSON))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    @WithMockUser(username = "test", password = "test", roles = "USER")
-    public void admin_url_is_forbidden_for_user() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ADMIN).accept(APPLICATION_JSON))
-                .andExpect(status().isForbidden());
-    }
-
-    @Test
-    @WithMockUser(username = "test", password = "test", roles = {"USER", "ADMIN"})
-    public void admin_url_is_for_admin() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(ADMIN).accept(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo(ADMIN_CONTENT)));
+    static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
-*/
