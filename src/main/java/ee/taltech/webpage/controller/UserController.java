@@ -20,20 +20,15 @@ public class UserController {
     private final UserService userService;
     private final LoginService loginService;
 
-    @PostMapping("register")
+    @PostMapping("/reg")
     public ResponseEntity<Void> register(@RequestBody RegisterDto registerDto){
         userService.saveUser(registerDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping("login")
+    @PostMapping("/log")
     public LoginResponse login(@RequestBody LoginDto loginDto){
         return loginService.login(loginDto);
-    }
-
-    @GetMapping("me")
-    public Object getMe() {
-        return UserSessionHolder.getLoggedInUser();
     }
 
 }

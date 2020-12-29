@@ -72,8 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/user").hasRole("USER")
 //                .antMatchers("/admin").hasRole("ADMIN")
 
-                .anyRequest().fullyAuthenticated()
-        ; //if this is not disabled your https frontend must have https (not http) on backend;
+                .anyRequest().fullyAuthenticated();
+                //if this is not disabled your https frontend must have https (not http) on backend;
     }
 
     @Bean
