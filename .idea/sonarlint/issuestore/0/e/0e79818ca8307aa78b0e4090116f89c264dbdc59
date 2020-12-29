@@ -1,5 +1,10 @@
 
 b
-java:S1192"GDefine a constant instead of duplicating this literal "Skruf" 10 times.(‡ËÖøıÿÿÿÿ
+java:S1192&"GDefine a constant instead of duplicating this literal "Skruf" 10 times.(‡ËÖøıÿÿÿÿ
 u
-java:S1192"ZDefine a constant instead of duplicating this literal "/assets/images/skruf.png" 10 times.(‡ËÖøıÿÿÿÿ
+java:S1192&"ZDefine a constant instead of duplicating this literal "/assets/images/skruf.png" 10 times.(‡ËÖøıÿÿÿÿ
+[
+java:S1068"9Remove this unused "authenticationManager" private field.(’ûêøÿÿÿÿ8¸†¯Ğê.
+V
+java:S1068"4Remove this unused "jwtTokenProvider" private field.(ÃŞ†üÿÿÿÿ8¸†¯Ğê.
+X	java:S1251"<This block of commented-out lines of code should be removed.(ÖÇ¨Ñ8ö¨©Ğê.

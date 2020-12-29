@@ -58,6 +58,7 @@ public class UserService {
     public List<Item> getWishlist(String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
         if (userName == null){
+            //This null is needed for frontend
             return null;
         }
         Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
@@ -93,6 +94,7 @@ public class UserService {
     public List<ItemCount> getShoppingCart(String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
         if (userName == null){
+            //This null is needed for frontend
             return null;
         }
         Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
