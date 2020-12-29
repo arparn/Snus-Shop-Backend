@@ -1,5 +1,6 @@
 package ee.taltech.webpage.common;
 
+import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.security.JwtTokenProvider;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,11 @@ public abstract class RestTemplateTests {
     };
     public static final ParameterizedTypeReference<Item> ITEM = new ParameterizedTypeReference<>() {
     };
+    public static final ParameterizedTypeReference<Comment> COMMENT = new ParameterizedTypeReference<>() {
+    };
     public static final ParameterizedTypeReference<List<ItemCount>> LIST_OF_ITEM_COUNT = new ParameterizedTypeReference<>() {
+    };
+    public static final ParameterizedTypeReference<List<Comment>> LIST_OF_COMMENTS = new ParameterizedTypeReference<>() {
     };
     public static final ParameterizedTypeReference<Double> ITEM_ID = new ParameterizedTypeReference<>() {
     };
@@ -56,5 +62,10 @@ public abstract class RestTemplateTests {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + jwtTokenProvider.createTokenForTests(username));
         return headers;
+    }
+
+    protected <T> HttpEntity<T> entity(T param, String name) {
+        HttpHeaders headers = authorizationHeader(name);
+        return new HttpEntity<>(param, headers);
     }
 }

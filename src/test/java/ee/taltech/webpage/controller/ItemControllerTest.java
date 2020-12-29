@@ -138,8 +138,4 @@ class ItemControllerTest extends RestTemplateTests {
         assertEquals("new taste of freedom", changed2.getBody());
     }
 
-    private <T> HttpEntity<T> entity(T param, String name) {
-        HttpHeaders headers = authorizationHeader(name);
-        return new HttpEntity<>(param, headers);
-    }
 }
