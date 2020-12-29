@@ -5,18 +5,20 @@ public class Security {
     //todo A
     // What is authentication?
     // Answer:
-    // Authentication is the process of recognizing the identity of a user. It is a mechanism for associating
-    // an incoming request with a set of credentials. The provided credentials are compared with the data in a file
-    // in the authorized user information database on the local operating system or on the authentication server.
+    // Authentication is a mechanism to check the identity of a user by comparing the password entered by
+    // user (for the specified login) with the password stored in the user login database.
 
     //todo B
     // What is authorization?
-    // Answer:
+    // Answer: Authorization is a mechanism of giving certain rights to group of certain people to make certain actions.
 
     //todo C
     // For web (HTTP backend) Spring Security is configured as a ... ? Explain it.
     // Think or read how Spring Security checks are injection into your application.
-    // Configured as (one word):
-    // Description:
+    // Configured as (one word): Filter
+    // Description: Spring Security provides a filter that intercepts that request and authenticates the user.
 
+
+    //If Spring Security is on the classpath, Spring Boot automatically secures all HTTP endpoints
+    //with basic authentication.
 }

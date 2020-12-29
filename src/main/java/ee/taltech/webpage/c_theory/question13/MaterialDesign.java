@@ -4,7 +4,7 @@ public class MaterialDesign {
 
     //todo A
     // What is material design?
-    // Answer:
+    // Answer: Material design is a design language
 
     //todo B
     // Name and describe 2 principles of material design (there are more than 2)
