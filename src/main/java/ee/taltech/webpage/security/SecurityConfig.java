@@ -52,7 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                this is for url based security
                 .antMatchers("/").permitAll()
-                .antMatchers("/**/rating").hasRole("USER")
+                //.antMatchers("/**/rating").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/wishlist").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/shopping-cart").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/**/rating").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/**/price").hasRole("ADMIN")
+                .antMatchers("/**/description").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/**/prohibited_comment").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
                 //.antMatchers("comment/**/comments").permitAll()

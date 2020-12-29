@@ -21,15 +21,18 @@ public class CommentController {
         return itemsService.getComments(id);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("{id}")
     public Comment addComment(@RequestBody Comment comment,
                               @PathVariable Long id) {
         return itemsService.addComment(comment, itemsService.getItemById(id));
     }
 
-    //@Secured("ADMIN")
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/{id}/{commId}/prohibited_comment")
     public List<Comment> deleteComment(@PathVariable long id, @PathVariable int commId) {
         return itemsService.deleteComment(itemsService.getItemById(id), commId);
     }
 }
+//*ngIf="user !== null && (user.role === 'USER' || user.role === 'ADMIN')"
+//*ngIf="user !== null && user.role === 'ADMIN'"
