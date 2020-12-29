@@ -16,9 +16,6 @@ public class Security {
     // For web (HTTP backend) Spring Security is configured as a ... ? Explain it.
     // Think or read how Spring Security checks are injection into your application.
     // Configured as (one word): Filter
-    // Description: Spring Security provides a filter that intercepts that request and authenticates the user.
+    // Description: Spring Security provides a filter that intercepts request and authenticates the user.
 
-
-    //If Spring Security is on the classpath, Spring Boot automatically secures all HTTP endpoints
-    //with basic authentication.
 }
