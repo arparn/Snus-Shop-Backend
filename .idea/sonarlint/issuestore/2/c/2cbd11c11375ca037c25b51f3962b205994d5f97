@@ -1,9 +1,3 @@
 
 1
 java:S1700"Rename field "comment"(øÛ¼ùÿÿÿÿ
-J
-java:S1068"-Remove this unused "firstName" private field.(š„¦¿8¥çµ²Ó.
-N
-java:S1068",Remove this unused "lastName" private field.(ºàÑïúÿÿÿÿ8¥çµ²Ó.
-M
-java:S1068"+Remove this unused "comment" private field.(øÛ¼ùÿÿÿÿ8¥çµ²Ó.

@@ -35,11 +35,6 @@ public class ItemsService {
         return itemsRepository.findAll().stream().filter(x -> x.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
 
-    public Item getByNameOne(String name) {
-        Optional<Item> item = itemsRepository.findAll().stream().filter(x -> x.getName().toLowerCase().contains(name.toLowerCase())).findFirst();
-        return item.orElse(null);
-    }
-
     public List<Item> getByRatingMostPopular() {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getRating).reversed()).collect(Collectors.toList());
     }
@@ -50,10 +45,6 @@ public class ItemsService {
 
     public List<Item> getByPriceMax() {
         return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getPrice).reversed()).collect(Collectors.toList());
-    }
-
-    public List<Item> getItemByAlphabetAtoZ() {
-        return itemsRepository.findAll().stream().sorted(Comparator.comparing(Item::getName)).collect(Collectors.toList());
     }
 
     public List<Comment> getComments(Long itemLong) {
@@ -67,6 +58,20 @@ public class ItemsService {
         return item.getRating();
     }
 
+    public String changePrice(Long id, Double price) {
+        Item item = getItemById(id);
+        item.changePrice(price);
+        itemsRepository.save(item);
+        return String.valueOf(item.getRating());
+    }
+
+    public String changeDescription(Long id, String description) {
+        Item item = getItemById(id);
+        item.changeDescription(description);
+        itemsRepository.save(item);
+        return item.getDescription();
+    }
+
     // update
     public void update(Item item) {
         itemsRepository.save(item);
@@ -77,5 +82,17 @@ public class ItemsService {
         commentRepository.save(comment);
         update(item);
         return comment;
+    }
+
+    public List<Comment> deleteComment(Item item, int commId) {
+        for (Comment com: item.getComments()) {
+            if (com.getId() == commId) {
+                item.deleteComment(com);
+                commentRepository.save(com);
+                update(item);
+                break;
+            }
+        }
+        return item.getComments();
     }
 }

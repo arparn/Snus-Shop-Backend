@@ -1,5 +1,6 @@
 package ee.taltech.webpage.controller;
 
+import ee.taltech.webpage.model.Info;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.security.Roles;
@@ -20,24 +21,24 @@ public class ShoppingCartController {
     private UserService userService;
 
     @GetMapping
-    public List<ItemCount> getShoppingCart() {
-        return userService.getShoppingCart();
+    public List<ItemCount> getShoppingCart(@RequestHeader (name="Authorization") String token) {
+        return userService.getShoppingCart(token.substring(7));
     }
 
     @PostMapping
-    public Item addShoppingCart(@RequestBody Long id){
-        return userService.addItemToShoppingCart(id);
+    public Item addShoppingCart(@RequestBody Long id, @RequestHeader (name="Authorization") String token){
+        return userService.addItemToShoppingCart(id, token.substring(7));
     }
 
     @DeleteMapping("{id}")
-    public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id){
-        userService.removeItemFromShoppingCart(id);
-        return userService.getShoppingCart();
+    public List<ItemCount> removeItemFromShoppingCart(@PathVariable Long id, @RequestHeader (name="Authorization") String token){
+        userService.removeItemFromShoppingCart(id, token.substring(7));
+        return userService.getShoppingCart(token.substring(7));
     }
 
     @DeleteMapping("shopping-cart")
-    public List<ItemCount> clearShoppingCart() {
-        userService.clearShoppingCart();
-        return userService.getShoppingCart();
+    public List<ItemCount> clearShoppingCart(@RequestHeader (name="Authorization") String token) {
+        userService.clearShoppingCart(token.substring(7));
+        return userService.getShoppingCart(token.substring(7));
     }
 }

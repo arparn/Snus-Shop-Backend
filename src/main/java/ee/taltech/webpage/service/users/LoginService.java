@@ -38,7 +38,6 @@ public class LoginService {
                 .token(token)
                 .role(myUser.getDbRole())
                 .build();
-
     }
 }
 

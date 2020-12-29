@@ -30,3 +30,6 @@ logging:
 jwt:
   secret: secret
   durationMin: 30
+users:
+  adminName: admin
+  adminPassword: admin

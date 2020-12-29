@@ -4,6 +4,7 @@ package ee.taltech.webpage.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -51,14 +52,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                this is for url based security
                 .antMatchers("/").permitAll()
+                //.antMatchers("/**/rating").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/wishlist").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/shopping-cart").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/**/rating").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/**/price").hasRole("ADMIN")
+                .antMatchers("/**/description").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/**/prohibited_comment").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
+                //.antMatchers("comment/**/comments").permitAll()
+                //.antMatchers("comment/**").hasRole("USER")
+                //.antMatchers("comment/**").hasRole("ADMIN")
                 /*
+
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/users/login").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/heroes/**").permitAll()*/
 //                .antMatchers("/user").hasRole("USER")
 //                .antMatchers("/admin").hasRole("ADMIN")
+
                 .anyRequest().fullyAuthenticated()
         ; //if this is not disabled your https frontend must have https (not http) on backend;
     }

@@ -1,7 +1,7 @@
 package ee.taltech.webpage.controller;
 
 import ee.taltech.webpage.model.Comment;
-import ee.taltech.webpage.security.Roles;
+import ee.taltech.webpage.security.DbRole;
 import ee.taltech.webpage.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -21,10 +21,18 @@ public class CommentController {
         return itemsService.getComments(id);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("{id}")
     public Comment addComment(@RequestBody Comment comment,
                               @PathVariable Long id) {
         return itemsService.addComment(comment, itemsService.getItemById(id));
     }
 
+    @Secured("ROLE_ADMIN")
+    @DeleteMapping("/{id}/{commId}/prohibited_comment")
+    public List<Comment> deleteComment(@PathVariable long id, @PathVariable int commId) {
+        return itemsService.deleteComment(itemsService.getItemById(id), commId);
+    }
 }
+//*ngIf="user !== null && (user.role === 'USER' || user.role === 'ADMIN')"
+//*ngIf="user !== null && user.role === 'ADMIN'"
