@@ -1,33 +1,26 @@
-/*
+
 package ee.taltech.webpage.controller;
 
-import common.RestTemplateTests;
+import ee.taltech.webpage.common.RestTemplateTests;
 import ee.taltech.webpage.model.Comment;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
+import ee.taltech.webpage.security.JwtTokenProvider;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-;
 
 class ItemControllerTest extends RestTemplateTests {
-
-    public static final ParameterizedTypeReference<List<Item>> LIST_OF_ITEMS = new ParameterizedTypeReference<>() {};
-    public static final ParameterizedTypeReference<Item> ITEM = new ParameterizedTypeReference<>() {};
-    public static final ParameterizedTypeReference<List<ItemCount>> LIST_OF_ITEM_COUNT = new ParameterizedTypeReference<>() {};
-    public static final ParameterizedTypeReference<Double> ITEM_ID = new ParameterizedTypeReference<>() {};
-
+    JwtTokenProvider jwtTokenProvider;
 
     @Test
-    void one_can_query_items(){
-        ResponseEntity<List<Item>> exchange = template().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
+    void one_can_query_items() {
+        ResponseEntity<List<Item>> exchange = templateWithUser().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchange.getBody();
         assertNotNull(items);
         assertEquals(HttpStatus.OK, exchange.getStatusCode());
@@ -35,69 +28,27 @@ class ItemControllerTest extends RestTemplateTests {
         Item item = items.get(0);
         assertEquals("Odens", item.getName());
     }
-    //TODO
+
     @Test
-    void test_min_strength(){
-        ResponseEntity<List<Item>> exchange = template().exchange("/items/strength-min", HttpMethod.GET, null, LIST_OF_ITEMS);
+    void test_strength() {
+        ResponseEntity<List<Item>> exchange = template().exchange("/items/?filter=strength&direction=MIN", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchange.getBody();
         Item item = items.get(0);
         assertEquals("KNOX", item.getName());
-        assertEquals(14 ,items.size());
+        assertEquals(14, items.size());
         item = items.get(items.size() - 1);
         assertEquals("Odens", item.getName());
+        exchange = template().exchange("/items/?filter=strength", HttpMethod.GET, null, LIST_OF_ITEMS);
+        items = exchange.getBody();
+        item = items.get(0);
+        assertEquals("Odens", item.getName());
+        assertEquals(14, items.size());
+        item = items.get(items.size() - 1);
+        assertEquals("KNOX", item.getName());
     }
 
     @Test
-    void grading_correct(){
-        ResponseEntity<List<Item>> exchange = template().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
-        List<Item> items = exchange.getBody();
-        Item item = items.get(0);
-        //Long itemId = item.getId();
-        assertEquals(0, item.getRating());
-        //ResponseEntity<Double> addGradeToItem = template().exchange("/items/" + itemId + "/grade", HttpMethod.POST, null, ITEM_ID);
-        item.addGrade(5);
-        assertEquals(5, item.getRating());
-        item.addGrade(5);
-        item.addGrade(4);
-        item.addGrade(5);
-        item.addGrade(2);
-        assertEquals(4.2, item.getRating());
-        item = items.get(3);
-        assertEquals(0, item.getRating());
-    }
-
-    */
-/*@Test
-    void comment_correct(){
-        Comment comment1 = new Comment("Ilja", "Boit", "My comment1");
-        Comment comment2 = new Comment("Ilja", "Boits", "My comment2");
-        Comment comment3 = new Comment("Ilja", "Boitss", "My comment3");
-        Comment comment4 = new Comment("Ilja", "Boitsss", "My comment4");
-        ResponseEntity<List<Item>> exchange = templateWithUser().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
-        List<Item> items = exchange.getBody();
-        Item item = items.get(0);
-        assertEquals(0, item.getComments().size());
-        item.addComment(comment1);
-        assertEquals(1, item.getComments().size());
-        item.addComment(comment2);
-        item.addComment(comment3);
-        item.addComment(comment4);
-        assertEquals("My comment4", item.getComments().get(3).getComment());
-    }*//*
-
-
-    @Test
-    void item_by_id(){
-        ResponseEntity<Item> exchange = template().exchange("/items/3", HttpMethod.GET, null, ITEM);
-        Item item = exchange.getBody();
-        assert item != null;
-        assertEquals(3, item.getId());
-    }
-
-
-    //TODO
-    @Test
-    void rating_most_popular(){
+    void rating_most_popular() {
         ResponseEntity<List<Item>> exchange = templateWithUser().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
         List<Item> items = exchange.getBody();
         Item item0 = items.get(0);
@@ -111,31 +62,86 @@ class ItemControllerTest extends RestTemplateTests {
         item6.addGrade(4);
         item6.addGrade(4);
         item6.addGrade(5);
-        exchange = templateWithUser().exchange("/items/rating-max", HttpMethod.GET, null, LIST_OF_ITEMS);
+        exchange = templateWithUser().exchange("/items/?filter=rating", HttpMethod.GET, null, LIST_OF_ITEMS);
         items = exchange.getBody();
         item0 = items.get(0);
         assertEquals(item0Id, item0.getId());
         Item item1 = items.get(1);
-        assertEquals(3, item1.getId());
+        assertEquals(2, item1.getId());
         Item item2 = items.get(2);
-        assertEquals(4, item2.getId());
+        assertEquals(3, item2.getId());
     }
-    //TODO
+
     @Test
-    void empty_cart_and_wishlist(){
-        ResponseEntity<List<ItemCount>> exchangeItemCount = templateWithUser().exchange("/user/shopping-cart", HttpMethod.GET, null, LIST_OF_ITEM_COUNT);
-        ResponseEntity<List<Item>> exchangeWishlist = templateWithUser().exchange("/user", HttpMethod.GET, null, LIST_OF_ITEMS);
-        List<Item> items = exchangeWishlist.getBody();
-        assertNotNull(items);
-        assertEquals(HttpStatus.OK, exchangeWishlist.getStatusCode());
-        assertTrue(items.isEmpty());
-        Item item0 = new Item();
-        ItemCount itemCount0 = new ItemCount();
-        ResponseEntity<Item> addItem = templateWithUser().exchange("/user/wishList", HttpMethod.POST, null, ITEM);
-        List<ItemCount> itemCounts = exchangeItemCount.getBody();
-        assertNotNull(itemCounts);
-        assertEquals(HttpStatus.OK, exchangeItemCount.getStatusCode());
-        assertTrue(itemCounts.isEmpty());
+    void max_price() {
+        ResponseEntity<List<Item>> exchange = template().exchange("/items/?filter=price&direction=MIN", HttpMethod.GET, null, LIST_OF_ITEMS);
+        List<Item> items = exchange.getBody();
+        Item item = items.get(0);
+        assertEquals("Skruf", item.getName());
+        assertEquals(14, items.size());
     }
+
+
+    @Test
+    void item_by_id() {
+        ResponseEntity<Item> exchange = template().exchange("/items/3", HttpMethod.GET, null, ITEM);
+        Item item = exchange.getBody();
+        assert item != null;
+        assertEquals(3, item.getId());
+    }
+
+    @Test
+    void grading_correct() {
+        ResponseEntity<List<Item>> exchange = templateWithUser().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
+        List<Item> items = exchange.getBody();
+        Item item = items.get(0);
+
+        //Long itemId = item.getId();
+        assertEquals(0, item.getRating());
+        //ResponseEntity<Double> addGradeToItem = template().exchange("/items/" + itemId + "/grade", HttpMethod.POST, null, ITEM_ID);
+        templateWithAdmin().exchange("/items/1/rating", HttpMethod.POST, entity(5, "admin"), ITEM_ID);
+        templateWithAdmin().exchange("/items/1/rating", HttpMethod.POST, entity(5, "admin"), ITEM_ID);
+        templateWithAdmin().exchange("/items/1/rating", HttpMethod.POST, entity(4, "admin"), ITEM_ID);
+        templateWithAdmin().exchange("/items/1/rating", HttpMethod.POST, entity(5, "admin"), ITEM_ID);
+        templateWithAdmin().exchange("/items/1/rating", HttpMethod.POST, entity(2, "admin"), ITEM_ID);
+        ResponseEntity<Item> itemEx = template().exchange("/items/1", HttpMethod.GET, null, ITEM);
+        Item item2 = itemEx.getBody();
+        assertEquals(4.2, item2.getRating());
+        item2 = items.get(3);
+        assertEquals(0, item2.getRating());
+    }
+
+    @Test
+    void refactor_item() {
+        ResponseEntity<List<Item>> exchange = templateWithAdmin().exchange("/items", HttpMethod.GET, null, LIST_OF_ITEMS);
+        List<Item> items = exchange.getBody();
+        Item item = items.get(0);
+        item.changePrice(3.3);
+        Double price = item.getPrice();
+        Item newItem = new Item();
+        ItemCount itemCount = new ItemCount();
+        ItemCount itemCount7 = new ItemCount(item, 7);
+        assertNull(itemCount.getId());
+        assertNull(itemCount.getItem());
+        assertNotEquals(itemCount.getQuantity(), itemCount7.getQuantity());
+        itemCount.setId(343L);
+        itemCount7.setId(343L);
+        assertEquals(itemCount.getId(), itemCount7.getId());
+        itemCount.setItem(item);
+        assertEquals(itemCount.getItem(), itemCount7.getItem());
+        itemCount.setQuantity(7);
+        assertEquals(itemCount.getQuantity(), itemCount7.getQuantity());
+        newItem.changeDescription("new taste of freedom");
+        newItem.changePrice(3.3);
+        assertEquals(price, newItem.getPrice());
+        assertEquals("new taste of freedom", newItem.getDescription());
+    }
+
+    private <T> HttpEntity<T> entity(T param, String name) {
+
+        HttpHeaders headers = authorizationHeader(name);
+        return new HttpEntity<>(param, headers);
+    }
+
 }
-*/
+

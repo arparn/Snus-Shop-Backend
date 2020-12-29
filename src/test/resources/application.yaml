@@ -27,3 +27,6 @@ spring:
 logging:
   file:
     path: ./logs
+jwt:
+  secret: secret
+  durationMin: 30
