@@ -35,7 +35,7 @@ public class MyUserDetailsService implements UserDetailsService {
         if (CollectionUtils.isEmpty(users)){
             throw new UsernameNotFoundException(format("username not found: %s", username));
         }
-        User user = users.get(0); //this application doesn't protect against duplicate users
+        User user = users.get(0);
         return new MyUser(user.getUsername(), user.getPassword(), getAuthorities(user), user.getId(), user.getRole());
     }
 

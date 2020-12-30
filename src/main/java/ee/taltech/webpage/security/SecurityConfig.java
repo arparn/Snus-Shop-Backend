@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() //cross site request forgery, it's a must if we use cookies
+                .csrf().disable()
                 .headers().httpStrictTransportSecurity().disable()
                 .and()
                 .headers().frameOptions().disable()
@@ -50,9 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-//                this is for url based security
                 .antMatchers("/").permitAll()
-                //.antMatchers("/**/rating").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/wishlist").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/shopping-cart").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/**/rating").hasAnyRole("ADMIN", "USER")
@@ -60,20 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/description").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/**/prohibited_comment").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
-                //.antMatchers("comment/**/comments").permitAll()
-                //.antMatchers("comment/**").hasRole("USER")
-                //.antMatchers("comment/**").hasRole("ADMIN")
-                /*
-
-                .antMatchers("/users/register").permitAll()
-                .antMatchers("/users/login").permitAll()
-                .antMatchers("/swagger-ui/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/heroes/**").permitAll()*/
-//                .antMatchers("/user").hasRole("USER")
-//                .antMatchers("/admin").hasRole("ADMIN")
-
                 .anyRequest().fullyAuthenticated();
-                //if this is not disabled your https frontend must have https (not http) on backend;
     }
 
     @Bean

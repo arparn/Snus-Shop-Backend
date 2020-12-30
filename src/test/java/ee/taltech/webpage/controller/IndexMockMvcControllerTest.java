@@ -3,7 +3,6 @@ package ee.taltech.webpage.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.taltech.webpage.service.users.dto.LoginDto;
 import ee.taltech.webpage.service.users.dto.RegisterDto;
-import ee.taltech.webpage.service.users.exeptions.UserException;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ public class IndexMockMvcControllerTest {
 
     @Test
     @Order(1)
-    //    @DisplayName("name of the test")
     public void register() throws Exception {
 
         RegisterDto registerDto = new RegisterDto();

@@ -29,9 +29,8 @@ public class LoginService {
         if (isBlank(loginDto.getPassword())) {
             throw new UserException("missing password");
         }
-        //this will validate that the password is correct (without us validating it explicitly)
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
-        MyUser myUser = (MyUser) authenticate.getPrincipal(); //it is UserDetails and in our case it is MyUser
+        MyUser myUser = (MyUser) authenticate.getPrincipal();
         String token = jwtTokenProvider.generateToken(myUser);
         return LoginResponse.builder()
                 .username(myUser.getUsername())

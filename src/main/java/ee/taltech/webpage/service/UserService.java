@@ -1,6 +1,5 @@
 package ee.taltech.webpage.service;
 
-import ee.taltech.webpage.exeption.UserNotFoundException;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.model.ItemCount;
 import ee.taltech.webpage.model.User;
@@ -11,7 +10,6 @@ import ee.taltech.webpage.security.JwtTokenProvider;
 import ee.taltech.webpage.service.users.dto.RegisterDto;
 import ee.taltech.webpage.service.users.exeptions.UserException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -52,13 +50,11 @@ public class UserService {
         user.setRole(DbRole.USER);
 
         userRepository.save(user);
-        //email sent out to confirm it, not necessary fot iti0203
     }
 
     public List<Item> getWishlist(String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
         if (userName == null){
-            //This null is needed for frontend
             return null;
         }
         Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
@@ -80,21 +76,9 @@ public class UserService {
         return item;
     }
 
-    public void clearWishlist(String token) {
-        String userName = jwtTokenProvider.getUsernameFromToken(token);
-        if (userName != null){
-            Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();
-            if (user.isPresent()) {
-                user.get().clearWishlist();
-                userRepository.save(user.get());
-            }
-        }
-    }
-
     public List<ItemCount> getShoppingCart(String token) {
         String userName = jwtTokenProvider.getUsernameFromToken(token);
         if (userName == null){
-            //This null is needed for frontend
             return null;
         }
         Optional<User> user = userRepository.findAllByUsername(userName).stream().findFirst();

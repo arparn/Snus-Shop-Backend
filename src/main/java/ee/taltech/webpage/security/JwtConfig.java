@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "jwt")
-public class JwtConfig { //external config for jwt
+public class JwtConfig {
 
     private String secret;
     private int durationMin;

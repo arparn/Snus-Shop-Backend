@@ -1,6 +1,5 @@
 package ee.taltech.webpage.controller;
 
-import ee.taltech.webpage.security.UserSessionHolder;
 import ee.taltech.webpage.service.UserService;
 import ee.taltech.webpage.service.users.LoginService;
 import ee.taltech.webpage.service.users.dto.LoginDto;

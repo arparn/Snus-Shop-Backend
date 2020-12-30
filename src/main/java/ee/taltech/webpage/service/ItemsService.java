@@ -1,7 +1,6 @@
 package ee.taltech.webpage.service;
 
 import ee.taltech.webpage.model.Comment;
-import ee.taltech.webpage.exeption.ItemNotFoundException;
 import ee.taltech.webpage.model.Item;
 import ee.taltech.webpage.repository.CommentRepository;
 import ee.taltech.webpage.repository.ItemsRepository;
@@ -72,7 +71,6 @@ public class ItemsService {
         return item.getDescription();
     }
 
-    // update
     public void update(Item item) {
         itemsRepository.save(item);
     }
