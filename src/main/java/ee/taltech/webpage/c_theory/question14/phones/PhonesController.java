@@ -1,5 +1,12 @@
 package ee.taltech.webpage.c_theory.question14.phones;
 
+import ee.taltech.webpage.c_theory.question14.chairs.Chair;
+import ee.taltech.webpage.c_theory.question14.chairs.Designer;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.List;
+
 public class PhonesController {
 
     //todo for question 14 there are 4 assignments in total
@@ -19,17 +26,63 @@ public class PhonesController {
 
     //todo B create a method to query phones (plural)
 
+    @GetMapping
+    public List<Phone> getPhones(@RequestParam(value = "manufacturer", required = false) String manufacturer,
+                                 @RequestParam(value = "minPrice", required = false) BigDecimal minPrice,
+                                 @RequestParam(value = "maxPrice", required = false) BigDecimal maxPrice,
+                                 @RequestParam(value = "date", defaultValue = "DESC") String date) {
+        //code
+        return null;
+    }
+
     //todo C create a method to query single phone
+
+    @GetMapping("{id}")
+    public Phone getPhone(@PathVariable Long phoneId) {
+        //code
+        return null;
+    }
 
     //todo D create a method to save a phone
 
+    @PostMapping
+    public Phone savePhone(@RequestBody Phone phone) {
+        //code
+        return null;
+    }
+
     //todo E create a method to update a phone
+
+    @PutMapping("{id}")
+    public Phone updatePhone(@RequestBody Phone phone,
+                             @PathVariable long phoneId) {
+        //code
+        return null;
+    }
 
     //todo F create a method to delete a phone
 
+    @DeleteMapping("{id}")
+    public Phone deletePhone(@PathVariable long phoneId) {
+        //code
+        return null;
+    }
+
     //todo G assuming each phone has apps installed (one-to-many relation) create a method to query phone's apps
 
+    @GetMapping("{id}/apps")
+    public List<App> getPhoneApps(@PathVariable long phoneId) {
+        //code
+        return null;
+    }
+
     //todo H create a method to update phone's price (and nothing else)
+
+    @PatchMapping("{id}")
+    public Phone updatePrice(@RequestBody BigDecimal price, @PathVariable long phoneId) {
+        //code
+        return null;
+    }
 
     //todo I modify correct method to support searching by manufacturer while keeping original functionality
 
