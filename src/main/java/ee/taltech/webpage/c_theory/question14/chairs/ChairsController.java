@@ -1,5 +1,12 @@
 package ee.taltech.webpage.c_theory.question14.chairs;
 
+import ee.taltech.webpage.model.Item;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RequestMapping("chairs")
+@RestController
 public class ChairsController {
 
     //todo for question 14 there are 4 assignments in total
@@ -20,17 +27,62 @@ public class ChairsController {
 
     //todo B create a method to query chairs (plural)
 
+    @GetMapping
+    public List<Chair> getChairs(@RequestParam(value = "type", required = false) String type,
+                                 @RequestParam(value = "inSock", required = false) Boolean inStock,
+                                 @RequestParam(value = "direction", defaultValue = "DESC") String direction) {
+        //code
+        return null;
+    }
+
     //todo C create a method to query single chair
+
+    @GetMapping("{id}")
+    public Chair getChairById(@PathVariable Long id) {
+        //code
+       return null;
+    }
 
     //todo D create a method to save a chair
 
+    @PostMapping
+    public Chair saveChair(@RequestBody Chair chair) {
+        //code
+        return null;
+    }
+
     //todo E create a method to update a chair
+
+    @PutMapping("{id}")
+    public Chair updateChair(@RequestBody Chair chair,
+                             @PathVariable long id) {
+        //code
+        return null;
+    }
 
     //todo F create a method to delete a chair
 
+    @DeleteMapping("{id}")
+    public Chair deleteChair(@PathVariable long id) {
+        //code
+        return null;
+    }
+
     //todo G assuming each chair has a designer (one-to-one relation) create a method to query chair's designer
 
+    @GetMapping("{id}/designer")
+    public Designer getDesigner(@PathVariable long id) {
+        //code
+        return null;
+    }
+
     //todo H create a method to update chair's name (and nothing else)
+
+    @PatchMapping("{id}")
+    public Chair updateName(@RequestBody String name, @PathVariable long id) {
+        //code
+        return null;
+    }
 
     //todo I modify correct method to support searching chairs by type while keeping original functionality
 
@@ -40,5 +92,4 @@ public class ChairsController {
     // * by lowest priced first
     // * by highest priced first
     // (you can assume that by default it searches most popular first)
-
 }
