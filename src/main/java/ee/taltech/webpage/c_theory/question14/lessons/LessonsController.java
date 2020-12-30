@@ -1,5 +1,14 @@
 package ee.taltech.webpage.c_theory.question14.lessons;
 
+import ee.taltech.webpage.c_theory.question14.chairs.Chair;
+import ee.taltech.webpage.c_theory.question14.chairs.Designer;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Year;
+import java.util.List;
+
+@RequestMapping("lessons")
+@RestController
 public class LessonsController {
 
     //todo for question 14 there are 4 assignments in total
@@ -19,17 +28,58 @@ public class LessonsController {
 
     //todo B create a method to query lessons (plural)
 
+    @GetMapping
+    public List<Lesson> getLessons(@RequestParam(value = "course", required = false) String courseId,
+                                   @RequestParam(value = "year", defaultValue = "2020") Year year,
+                                   @RequestParam(value = "visitors", defaultValue = "MAX") String visitors) {
+        //code
+        return null;
+    }
+
     //todo C create a method to query single lesson
+    @GetMapping("{id}")
+    public Lesson getLessonById(@PathVariable Long id) {
+        //code
+        return null;
+    }
 
     //todo D create a method to save a lesson
+    @PostMapping
+    public Lesson saveLesson(@RequestBody Lesson lesson) {
+        //code
+        return null;
+    }
 
     //todo E create a method to update a lesson
+    @PutMapping("{id}")
+    public Lesson updateLesson(@RequestBody Lesson lesson,
+                             @PathVariable long id) {
+        //code
+        return null;
+    }
 
     //todo F create a method to delete a lesson
+    @DeleteMapping("{id}")
+    public Lesson deleteLesson(@PathVariable long id) {
+        //code
+        return null;
+    }
 
     //todo G assuming each Lesson has students (one-to-many relation) create a method to query lesson's students
 
+    @GetMapping("/{id}/students")
+    public List<Students> getStudents(@PathVariable long id) {
+        //code
+        return null;
+    }
+
     //todo H create a method to update lesson's name (and nothing else)
+
+    @PatchMapping("{id}")
+    public Lesson updateLessonName(@RequestBody String name, @PathVariable long id) {
+        //code
+        return null;
+    }
 
     //todo G modify correct method to support searching lessons by course id while keeping original functionality
 
