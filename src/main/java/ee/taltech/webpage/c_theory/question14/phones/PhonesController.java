@@ -1,12 +1,12 @@
 package ee.taltech.webpage.c_theory.question14.phones;
 
-import ee.taltech.webpage.c_theory.question14.chairs.Chair;
-import ee.taltech.webpage.c_theory.question14.chairs.Designer;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@RequestMapping("phones")
+@RestController
 public class PhonesController {
 
     //todo for question 14 there are 4 assignments in total
